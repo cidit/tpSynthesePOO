@@ -18,6 +18,10 @@ public class Animation {
 		index = 0;
 	}
 	
+	/**
+	 * creates a new animation from an already existing one
+	 * @param composition
+	 */
 	public Animation(Animation composition) {
 		frames = new ArrayList<Image>(composition.frames.size());
 		Collections.copy(frames, composition.frames);
