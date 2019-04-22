@@ -3,8 +3,14 @@ package assets.entities;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
-public class Mob extends Entity{
-	
+/**
+ * Abstract class defining an entity with a concept of health.
+ * 
+ * @author cidit
+ *
+ */
+public abstract class Mob extends Entity {
+
 	private final int MAXHEALTH;
 	private int damage;
 
@@ -12,15 +18,15 @@ public class Mob extends Entity{
 		super(position, composition);
 		this.MAXHEALTH = MAXHEALTH;
 	}
-	
+
 	public void getDamaged(int damage) {
 		this.damage += damage;
 	}
-	
+
 	public int getHealth() {
 		return MAXHEALTH - damage;
 	}
-	
+
 	public int getMaxHealth() {
 		return MAXHEALTH;
 	}

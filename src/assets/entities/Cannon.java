@@ -3,11 +3,18 @@ package assets.entities;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
-public class Cannon extends Mob implements Playable {
-	
+/**
+ * Class defining a playable entity. Default playable entity in a regular space
+ * invaders game.
+ * 
+ * @author cidit
+ *
+ */
+public class Cannon extends Mob implements Playable, Weaponized {
+
 	public Cannon(Coordinates position, Animation composition, int MAXHEALTH) {
 		super(position, composition, MAXHEALTH);
-		
+
 	}
 
 	@Override
@@ -19,7 +26,7 @@ public class Cannon extends Mob implements Playable {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

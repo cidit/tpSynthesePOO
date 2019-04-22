@@ -3,6 +3,12 @@ package assets.entities;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
+/**
+ * Class defining a hostile mob.
+ * 
+ * @author cidit
+ *
+ */
 public class Enemy extends Mob implements Automaton {
 
 	public Enemy(Coordinates position, Animation composition, int MAXHEALTH) {
@@ -13,7 +19,7 @@ public class Enemy extends Mob implements Automaton {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

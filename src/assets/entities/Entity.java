@@ -6,6 +6,12 @@ import assets.graphic.Animation;
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;
 
+/**
+ * Abstract class defining a individual.
+ * 
+ * @author cidit
+ *
+ */
 public abstract class Entity {
 
 	protected EuclidianVector movement;
@@ -19,29 +25,26 @@ public abstract class Entity {
 		this.status = Status.OPERATIONAL;
 	}
 
-	
 	public void setMovement(EuclidianVector movement) {
 		this.movement = movement;
 	}
-	
-	
+
 	public EuclidianVector getMovement() {
 		return movement;
 	}
-	
+
 	public Coordinates getPosition() {
 		return movement.getInitialPoint();
 	}
-	
-	
+
 	public Image getTexture() {
 		return animationSet.getFrame();
 	}
-	
+
 	public void setAnimation(Animation animationSet) {
 		this.animationSet = animationSet;
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
