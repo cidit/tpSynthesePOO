@@ -2,6 +2,7 @@ package assets.graphic;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Animation {
@@ -15,7 +16,12 @@ public class Animation {
 	public Animation() {
 		frames = new ArrayList<Image>();
 		index = 0;
-
+	}
+	
+	public Animation(Animation composition) {
+		frames = new ArrayList<Image>(composition.frames.size());
+		Collections.copy(frames, composition.frames);
+		index = 0;
 	}
 
 	/**

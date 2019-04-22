@@ -17,11 +17,6 @@ public abstract class Entity {
 		this.animationSet = composition;
 	}
 
-	/**
-	 * the texture needs to change at regular intervals but does not depend on the
-	 * frequency at which the position / movement is updated
-	 */
-	public abstract void update();
 	
 	public void setMovement(EuclidianVector movement) {
 		this.movement = movement;
@@ -42,3 +37,8 @@ public abstract class Entity {
 	}
 
 }
+
+/**
+ * the texture needs to change at regular intervals but does not depend on the
+ * frequency at which the position / movement is updated
+ */
