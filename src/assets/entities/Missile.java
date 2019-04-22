@@ -16,7 +16,5 @@ public class Missile extends Projectile {
 		
 	}
 	
-	//add a ENUM getter for the currentState (flying, hitting, destroyed)
-	
 
 }

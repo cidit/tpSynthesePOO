@@ -24,7 +24,5 @@ public class Mob extends Entity{
 	public int getMaxHealth() {
 		return MAXHEALTH;
 	}
-	
-	//add a ENUM getter for the currentState (dead, alive)
 
 }

@@ -10,11 +10,13 @@ public abstract class Entity {
 
 	protected EuclidianVector movement;
 	protected Animation animationSet;
+	protected Status status;
 
 	public Entity(Coordinates position, Animation composition) {
 		this.movement = new EuclidianVector(0, 0, 0);
 		this.movement.setInitialPoint(position);
 		this.animationSet = composition;
+		this.status = Status.OPERATIONAL;
 	}
 
 	
@@ -38,6 +40,10 @@ public abstract class Entity {
 	
 	public void setAnimation(Animation animationSet) {
 		this.animationSet = animationSet;
+	}
+	
+	public Status getStatus() {
+		return status;
 	}
 
 }
