@@ -1,5 +1,6 @@
 package game;
 
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class Launch {
@@ -9,7 +10,10 @@ public class Launch {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
+				JFrame frame = new JFrame("Space Invader 0.1");
+				frame.setSize(512, 512);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}
 		});
