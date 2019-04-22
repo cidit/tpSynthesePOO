@@ -35,6 +35,10 @@ public abstract class Entity {
 	public Image getTexture() {
 		return animationSet.getFrame();
 	}
+	
+	public void setAnimation(Animation animationSet) {
+		this.animationSet = animationSet;
+	}
 
 }
 
