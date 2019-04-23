@@ -48,6 +48,8 @@ public abstract class Entity {
 	public Status getStatus() {
 		return status;
 	}
+	
+	public abstract void update();
 
 }
 

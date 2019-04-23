@@ -12,7 +12,7 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public abstract class Obstacle extends Entity implements Automaton {
+public abstract class Obstacle extends Entity {
 
 	public Obstacle(Coordinates position, Animation composition) {
 		super(position, composition);

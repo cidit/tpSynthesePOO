@@ -11,10 +11,19 @@ import assets.util.Coordinates;
  *
  */
 public class Canon extends Mob implements Playable, Weaponized {
+	
+	private Direction direction;
 
 	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
 		super(position, composition, MAXHEALTH);
+		direction = Direction.STOPPED;
 
+	}
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -28,5 +37,10 @@ public class Canon extends Mob implements Playable, Weaponized {
 		// TODO Auto-generated method stub
 
 	}
+	
+	private enum Direction {
+		RIGHT, LEFT, FASTRIGHT, FASTLEFT, STOPPED;
+	}
+
 
 }

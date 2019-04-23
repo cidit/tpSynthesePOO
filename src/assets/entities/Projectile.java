@@ -10,7 +10,7 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public abstract class Projectile extends Entity implements Automaton {
+public abstract class Projectile extends Entity {
 
 	public Projectile(Coordinates position, Animation composition) {
 		super(position, composition);

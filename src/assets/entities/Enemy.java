@@ -9,7 +9,7 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public class Enemy extends Mob implements Automaton {
+public class Enemy extends Mob {
 
 	public Enemy(Coordinates position, Animation composition, int MAXHEALTH) {
 		super(position, composition, MAXHEALTH);
