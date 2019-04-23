@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Custom animations.
+ * 
+ * @author cidit
+ *
+ */
 public class Animation {
 
 	private List<Image> frames;
