@@ -10,9 +10,9 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public class Cannon extends Mob implements Playable, Weaponized {
+public class Canon extends Mob implements Playable, Weaponized {
 
-	public Cannon(Coordinates position, Animation composition, int MAXHEALTH) {
+	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
 		super(position, composition, MAXHEALTH);
 
 	}

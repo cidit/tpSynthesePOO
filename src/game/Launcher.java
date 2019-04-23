@@ -3,7 +3,7 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class Launch {
+public class Launcher {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
