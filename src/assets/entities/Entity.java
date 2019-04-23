@@ -49,7 +49,26 @@ public abstract class Entity {
 		return status;
 	}
 	
-	public abstract void update();
+	public void update() {
+		switch (status) {
+		case DESTROYED:
+			getDestroyed();
+			break;
+		case HIT:
+			getHit();
+			break;
+		case OPERATIONAL:
+			getOperationnal();
+			break;
+		}
+		
+	}
+
+	protected abstract void getOperationnal();
+
+	protected abstract void getHit();
+
+	protected abstract void getDestroyed();
 
 }
 

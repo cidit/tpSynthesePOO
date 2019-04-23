@@ -17,9 +17,21 @@ public class Missile extends Projectile {
 	}
 
 	@Override
-	public void update() {
+	protected void getOperationnal() {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	protected void getHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void getDestroyed() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

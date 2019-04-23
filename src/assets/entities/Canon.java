@@ -19,12 +19,6 @@ public class Canon extends Mob implements Playable, Weaponized {
 		direction = Direction.STOPPED;
 
 	}
-	
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Projectile shoot() {
@@ -34,12 +28,52 @@ public class Canon extends Mob implements Playable, Weaponized {
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
+		switch (direction) {
+		case LEFT:
+			break;
+		case RIGHT:
+			break;
+		case FASTLEFT:
+			break;
+		case FASTRIGHT:
+			break;
+		case STOPPED:
+			break;
+			
+		}
 
 	}
 	
 	private enum Direction {
 		RIGHT, LEFT, FASTRIGHT, FASTLEFT, STOPPED;
+	}
+
+	@Override
+	protected void getOperationnal() {
+		switch (direction) {
+		case LEFT:
+			direction = Direction.FASTLEFT;
+			break;
+		case RIGHT:
+			direction = Direction.FASTRIGHT;
+			break;
+		}
+		// TODO continue this
+		move();
+	}
+
+
+	@Override
+	protected void getHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	protected void getDestroyed() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
