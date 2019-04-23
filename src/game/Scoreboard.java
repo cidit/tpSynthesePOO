@@ -1,5 +1,9 @@
 package game;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +18,44 @@ import java.util.List;
 public class Scoreboard {
 
 	private List<Score> scores;
-	private final String filePath;
+	private final String savePath;
 
-	public Scoreboard(String filePath) {
+	public Scoreboard(String savePath) {
 		scores = new ArrayList<Score>();
-		this.filePath = filePath;
+		this.savePath = savePath;
 
-		// TODO fill the arraylist with a loop going through the save file
+		try (FileReader reader = new FileReader(savePath)) {
+			fillScoresArray(reader);
+		} catch (FileNotFoundException e) {
+			System.out.println("SCOREBOARD SAVEFILE NOT FOUND");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	private void fillScoresArray(FileReader reader) {
+		String builder = "";
+		try {
+			int ch = reader.read();
+			while (ch != -1) {
+				builder += (char) ch;
+				ch = reader.read();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		int start = 0, end = builder.indexOf(';');
+		while (end != -1) {
+			int delimiter = builder.indexOf(':', start);
+			String name = builder.substring(start, delimiter);
+			int points = Integer.parseInt(builder.substring(delimiter + 1, end));
+			start = end + 1;
+			end = builder.indexOf(';', start);
+			scores.add(new Score(name, points));
+		}
+
 	}
 
 	public void addScore(String name, int points) {
@@ -35,12 +70,16 @@ public class Scoreboard {
 		}
 		if (!added) {
 			scores.add(newScore);
-			scores.sort(null);
 		}
+		scores.sort(null);
 	}
 
 	public Score getHighScore() {
 		return scores.get(0);
+	}
+	
+	public List<Score> getScoreboard() {
+		return scores;
 	}
 
 	public void resetScoreboard() {
@@ -48,7 +87,15 @@ public class Scoreboard {
 	}
 
 	public void saveScoreboard() {
-		// TODO scoreboard-saving magic
+		String save = "";
+		for (Score score : scores) {
+			save += score.name + ":" + score.points + ";";
+		}
+		try (FileWriter writer = new FileWriter(savePath)) {
+			writer.write(save);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -83,6 +130,7 @@ public class Scoreboard {
 			return name + " " + points;
 		}
 
+		// might end up faulty, verify when testing that highscore is at beginning
 		@Override
 		public int compareTo(Score o) {
 			return this.points - o.points;
