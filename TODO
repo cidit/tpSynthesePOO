@@ -1,4 +1,14 @@
 TODO
 
-entities:
-player - enemy mobs
+Cannon: shoot(), move()
+Enemy: update(), other
+Entity: hint!
+Meteroid: Constructor, update(), other
+Missile: Constructor, update(), other
+Obstacle: Constructor, other
+Projectile: other
+Status: none
+Animation: test
+Game: all
+Launch: all
+Scoreboard: read/write file
