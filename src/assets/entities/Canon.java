@@ -6,15 +6,15 @@ import assets.util.EuclidianVector;
 
 /**
  * Class defining a playable entity. Default playable entity in a regular space
- * invaders game.
+ * invaders game. Only moves horizontally.
  * 
  * @author cidit
  *
  */
-public class Canon extends Mob implements Playable, Weaponized {
+public class Canon extends PlayableCharacter implements Weaponized {
 
 	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition, MAXHEALTH, Alegiance.FRIENDLY);
+		super(position, composition, MAXHEALTH);
 		alegiance = Alegiance.FRIENDLY;
 
 	}

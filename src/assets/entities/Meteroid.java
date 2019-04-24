@@ -13,8 +13,8 @@ import assets.util.Coordinates;
  */
 public class Meteroid extends Obstacle {
 
-	public Meteroid(Coordinates position, Animation composition) {
-		super(position, composition);
+	public Meteroid(Coordinates position, Animation composition, int MAXHEALTH) {
+		super(position, composition, MAXHEALTH);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -12,10 +12,10 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public abstract class Obstacle extends Entity {
+public abstract class Obstacle extends Mob {
 
-	public Obstacle(Coordinates position, Animation composition) {
-		super(position, composition, Alegiance.NONE);
+	public Obstacle(Coordinates position, Animation composition, int MAXHEALTH) {
+		super(position, composition, MAXHEALTH, Alegiance.NONE);
 		// TODO Auto-generated constructor stub
 	}
 
