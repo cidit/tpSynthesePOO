@@ -1,4 +1,4 @@
-package game;
+package assets.util;
 
 /**
  * Class that counts with manual incrementations.
