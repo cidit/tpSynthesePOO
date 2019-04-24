@@ -9,6 +9,6 @@ package assets.entities;
  */
 public interface Playable {
 
-	public void move(); // TODO flesh out a bit when you know how to move using keys
+	public void move(Direction direction); // TODO flesh out a bit when you know how to move using keys
 
 }

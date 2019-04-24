@@ -12,7 +12,7 @@ import assets.util.Coordinates;
 public class Enemy extends Mob {
 
 	public Enemy(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition, MAXHEALTH);
+		super(position, composition, MAXHEALTH, Alegiance.HOSTILE);
 		// TODO Auto-generated constructor stub
 	}
 

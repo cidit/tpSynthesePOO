@@ -17,12 +17,14 @@ public abstract class Entity {
 	protected EuclidianVector movement;
 	protected Animation animationSet;
 	protected Status status;
+	protected Alegiance alegiance;
 
-	public Entity(Coordinates position, Animation composition) {
+	public Entity(Coordinates position, Animation composition, Alegiance alegiance) {
 		this.movement = new EuclidianVector(0, 0, 0);
 		this.movement.setInitialPoint(position);
 		this.animationSet = composition;
 		this.status = Status.OPERATIONAL;
+		this.alegiance = alegiance;
 	}
 
 	public void setMovement(EuclidianVector movement) {
@@ -49,6 +51,10 @@ public abstract class Entity {
 		return status;
 	}
 	
+	public Alegiance getAlegiance() {
+		return alegiance;
+	}
+	
 	public void update() {
 		switch (status) {
 		case DESTROYED:
@@ -57,6 +63,7 @@ public abstract class Entity {
 		case HIT:
 			getHit();
 			break;
+		case INVINCIBLE:
 		case OPERATIONAL:
 			getOperationnal();
 			break;

@@ -12,8 +12,8 @@ import assets.util.Coordinates;
  */
 public abstract class Projectile extends Entity {
 
-	public Projectile(Coordinates position, Animation composition) {
-		super(position, composition);
+	public Projectile(Coordinates position, Animation composition, Alegiance alegiance) {
+		super(position, composition, alegiance);
 	}
 
 	// may be able to use ENUMs for the type of projectile and the power

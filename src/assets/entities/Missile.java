@@ -11,8 +11,8 @@ import assets.util.Coordinates;
  */
 public class Missile extends Projectile {
 
-	public Missile(Coordinates position, Animation composition) {
-		super(position, composition);
+	public Missile(Coordinates position, Animation composition, Alegiance alegiance) {
+		super(position, composition, alegiance);
 		// TODO Auto-generated constructor stub
 	}
 

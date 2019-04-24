@@ -15,7 +15,7 @@ import assets.util.Coordinates;
 public abstract class Obstacle extends Entity {
 
 	public Obstacle(Coordinates position, Animation composition) {
-		super(position, composition);
+		super(position, composition, Alegiance.NONE);
 		// TODO Auto-generated constructor stub
 	}
 

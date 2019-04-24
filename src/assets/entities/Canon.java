@@ -2,6 +2,7 @@ package assets.entities;
 
 import assets.graphic.Animation;
 import assets.util.Coordinates;
+import assets.util.EuclidianVector;
 
 /**
  * Class defining a playable entity. Default playable entity in a regular space
@@ -11,12 +12,13 @@ import assets.util.Coordinates;
  *
  */
 public class Canon extends Mob implements Playable, Weaponized {
-	
+
 	private Direction direction;
 
 	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition, MAXHEALTH);
-		direction = Direction.STOPPED;
+		super(position, composition, MAXHEALTH, Alegiance.FRIENDLY);
+		direction = Direction.NONE;
+		alegiance = Alegiance.FRIENDLY;
 
 	}
 
@@ -27,54 +29,42 @@ public class Canon extends Mob implements Playable, Weaponized {
 	}
 
 	@Override
-	public void move() {
-		switch (direction) {
+	public void move(Direction d) {
+		switch (d) {
 		case LEFT:
+			movement = new EuclidianVector(-1, 0);
+			direction = Direction.LEFT;
 			break;
 		case RIGHT:
+			movement = new EuclidianVector(1, 0);
+			direction = Direction.RIGHT;
 			break;
-		case FASTLEFT:
+		case NONE:
+			movement = new EuclidianVector(0, 0);
+			direction = Direction.NONE;
 			break;
-		case FASTRIGHT:
-			break;
-		case STOPPED:
-			break;
-			
+		default:
 		}
-
-	}
-	
-	private enum Direction {
-		RIGHT, LEFT, FASTRIGHT, FASTLEFT, STOPPED;
 	}
 
 	@Override
 	protected void getOperationnal() {
-		switch (direction) {
-		case LEFT:
-			direction = Direction.FASTLEFT;
-			break;
-		case RIGHT:
-			direction = Direction.FASTRIGHT;
-			break;
-		}
-		// TODO continue this
-		move();
+		// TODO
+		movement.setInitialPoint(movement.getTerminalPoint());
 	}
-
 
 	@Override
 	protected void getHit() {
-		// TODO Auto-generated method stub
-		
-	}
+		// TODO 
+		status = Status.INVINCIBLE;
 
+	}
 
 	@Override
 	protected void getDestroyed() {
 		// TODO Auto-generated method stub
-		
-	}
+		// trigger game over OR lose a life
 
+	}
 
 }

@@ -14,8 +14,8 @@ public abstract class Mob extends Entity {
 	private final int MAXHEALTH;
 	private int damage;
 
-	public Mob(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition);
+	public Mob(Coordinates position, Animation composition, int MAXHEALTH, Alegiance alegiance) {
+		super(position, composition, alegiance);
 		this.MAXHEALTH = MAXHEALTH;
 	}
 
