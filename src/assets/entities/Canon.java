@@ -13,11 +13,8 @@ import assets.util.EuclidianVector;
  */
 public class Canon extends Mob implements Playable, Weaponized {
 
-	private Direction direction;
-
 	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
 		super(position, composition, MAXHEALTH, Alegiance.FRIENDLY);
-		direction = Direction.NONE;
 		alegiance = Alegiance.FRIENDLY;
 
 	}
@@ -32,16 +29,13 @@ public class Canon extends Mob implements Playable, Weaponized {
 	public void move(Direction d) {
 		switch (d) {
 		case LEFT:
-			movement = new EuclidianVector(-1, 0);
-			direction = Direction.LEFT;
+			movement.add(new EuclidianVector(-1, 0));
 			break;
 		case RIGHT:
-			movement = new EuclidianVector(1, 0);
-			direction = Direction.RIGHT;
+			movement.add(new EuclidianVector(1, 0));
 			break;
 		case NONE:
-			movement = new EuclidianVector(0, 0);
-			direction = Direction.NONE;
+			movement.setTerminalPoint(movement.getInitialPoint());
 			break;
 		default:
 		}
@@ -63,7 +57,6 @@ public class Canon extends Mob implements Playable, Weaponized {
 	@Override
 	protected void getDestroyed() {
 		// TODO Auto-generated method stub
-		// trigger game over OR lose a life
 
 	}
 
