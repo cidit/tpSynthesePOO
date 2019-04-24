@@ -11,3 +11,5 @@ Status: none
 Animation: test
 Game: all
 Launch: all
+
+no choice but to move the player on update() because the game will be repainted on update() anyways
