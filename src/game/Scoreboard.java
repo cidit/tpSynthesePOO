@@ -59,17 +59,16 @@ public class Scoreboard {
 	}
 
 	public void addScore(String name, int points) {
-		Score newScore = new Score(name, points);
 		boolean added = false;
 		for (Score score : scores) {
-			if (score.getName() == newScore.getName())
-				if (score.getPoints() < newScore.getPoints()) {
-					score.setPoints(newScore.getPoints());
+			if (score.getName() == name)
+				if (score.getPoints() < points) {
+					score.setPoints(points);
 					added = true;
 				}
 		}
 		if (!added) {
-			scores.add(newScore);
+			scores.add(new Score(name, points));
 		}
 		scores.sort(null);
 	}
