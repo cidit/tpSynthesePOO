@@ -1,4 +1,4 @@
-package assets.entities.mobs;
+package assets.entities;
 
 /**
  * Enumeration of possible directions an entity can move towards.

@@ -1,7 +1,7 @@
 package plugged;
 
 import assets.entities.Alegiance;
-import assets.entities.projectiles.Projectile;
+import assets.entities.Projectile;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
