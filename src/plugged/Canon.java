@@ -1,5 +1,11 @@
-package assets.entities;
+package plugged;
 
+import assets.entities.Alegiance;
+import assets.entities.Status;
+import assets.entities.Weaponized;
+import assets.entities.mobs.Direction;
+import assets.entities.mobs.PlayableCharacter;
+import assets.entities.projectiles.Projectile;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;

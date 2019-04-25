@@ -1,5 +1,7 @@
-package assets.entities;
+package assets.entities.projectiles;
 
+import assets.entities.Alegiance;
+import assets.entities.Entity;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 

@@ -1,20 +1,20 @@
-package assets.entities;
+package plugged;
 
+import assets.entities.Alegiance;
+import assets.entities.projectiles.Projectile;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
 /**
- * Class defining a meteroid as an obstacle.
- * 
- * # OPTIONNAL TO THE SPA
+ * Class defining a missile as a type of projectile.
  * 
  * @author cidit
  *
  */
-public class Meteroid extends Obstacle {
+public class Missile extends Projectile {
 
-	public Meteroid(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition, MAXHEALTH);
+	public Missile(Coordinates position, Animation composition, Alegiance alegiance) {
+		super(position, composition, alegiance);
 		// TODO Auto-generated constructor stub
 	}
 

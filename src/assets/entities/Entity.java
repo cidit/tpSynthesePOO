@@ -27,10 +27,6 @@ public abstract class Entity {
 		this.alegiance = alegiance;
 	}
 
-	public void setMovement(EuclidianVector movement) {
-		this.movement = movement;
-	}
-
 	public EuclidianVector getMovement() {
 		return movement;
 	}
@@ -39,14 +35,10 @@ public abstract class Entity {
 		return movement.getInitialPoint();
 	}
 
-	public Image getTexture() {
+	public Image getSprite() {
 		return animationSet.getFrame();
 	}
-
-	public void setAnimation(Animation animationSet) {
-		this.animationSet = animationSet;
-	}
-
+	
 	public Status getStatus() {
 		return status;
 	}

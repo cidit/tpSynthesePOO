@@ -1,5 +1,6 @@
-package assets.entities;
+package assets.entities.mobs;
 
+import assets.entities.Alegiance;
 import assets.graphic.Animation;
 import assets.util.Coordinates;
 
