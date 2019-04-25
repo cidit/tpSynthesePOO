@@ -86,15 +86,20 @@ public class Scoreboard {
 	}
 
 	public void saveScoreboard() {
-		String save = "";
-		for (Score score : scores) {
-			save += score.name + ":" + score.points + ";";
-		}
 		try (FileWriter writer = new FileWriter(savePath)) {
-			writer.write(save);
+			writer.write(toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		for (Score score : scores) {
+			s += score.toString();
+		}
+		return s;
 	}
 
 	/**
@@ -126,13 +131,13 @@ public class Scoreboard {
 		}
 
 		public String toString() {
-			return name + " " + points;
+			return name + ":" + points + ";";
 		}
 
 		// might end up faulty, verify when testing that highscore is at beginning
 		@Override
 		public int compareTo(Score o) {
-			return this.points - o.points;
+			return o.points - this.points;
 		}
 	}
 }
