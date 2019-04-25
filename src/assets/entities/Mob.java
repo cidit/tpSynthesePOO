@@ -1,6 +1,7 @@
 package assets.entities;
 
-import assets.graphic.Animation;
+import java.awt.Image;
+
 import assets.util.Coordinates;
 
 /**
@@ -14,8 +15,8 @@ public abstract class Mob extends Entity {
 	private final int MAXHEALTH;
 	private int damage;
 
-	public Mob(Coordinates position, Animation composition, int MAXHEALTH, Alegiance alegiance) {
-		super(position, composition, alegiance);
+	public Mob(Coordinates position, Image sprite, int MAXHEALTH, Alegiance alegiance) {
+		super(position, sprite, alegiance);
 		this.MAXHEALTH = MAXHEALTH;
 		this.damage = 0;
 	}

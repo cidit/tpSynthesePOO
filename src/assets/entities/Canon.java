@@ -1,12 +1,7 @@
-package plugged;
+package assets.entities;
 
-import assets.entities.Alegiance;
-import assets.entities.Direction;
-import assets.entities.Projectile;
-import assets.entities.Status;
-import assets.entities.Weaponized;
-import assets.entities.mobs.PlayableCharacter;
-import assets.graphic.Animation;
+import java.awt.Image;
+
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;
 
@@ -17,11 +12,10 @@ import assets.util.EuclidianVector;
  * @author cidit
  *
  */
-public class Canon extends PlayableCharacter implements Weaponized {
+public class Canon extends Mob implements Weaponized {
 
-	public Canon(Coordinates position, Animation composition, int MAXHEALTH) {
-		super(position, composition, MAXHEALTH);
-		alegiance = Alegiance.FRIENDLY;
+	public Canon(Coordinates position, Image sprite, int MAXHEALTH) {
+		super(position, sprite, MAXHEALTH, Alegiance.FRIENDLY);
 
 	}
 
@@ -31,7 +25,6 @@ public class Canon extends PlayableCharacter implements Weaponized {
 		return null;
 	}
 
-	@Override
 	public void move(Direction d) {
 		switch (d) {
 		case LEFT:

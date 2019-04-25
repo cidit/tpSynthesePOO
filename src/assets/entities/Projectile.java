@@ -1,6 +1,7 @@
 package assets.entities;
 
-import assets.graphic.Animation;
+import java.awt.Image;
+
 import assets.util.Coordinates;
 
 /**
@@ -12,8 +13,8 @@ import assets.util.Coordinates;
  */
 public abstract class Projectile extends Entity {
 
-	public Projectile(Coordinates position, Animation composition, Alegiance alegiance) {
-		super(position, composition, alegiance);
+	public Projectile(Coordinates position, Image sprite, Alegiance alegiance) {
+		super(position, sprite, alegiance);
 	}
 
 	// may be able to use ENUMs for the type of projectile and the power

@@ -2,7 +2,6 @@ package assets.entities;
 
 import java.awt.Image;
 
-import assets.graphic.Animation;
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;
 
@@ -15,14 +14,14 @@ import assets.util.EuclidianVector;
 public abstract class Entity {
 
 	protected EuclidianVector movement;
-	protected Animation animationSet;
+	protected Image sprite;
 	protected Status status;
 	protected Alegiance alegiance;
 
-	public Entity(Coordinates position, Animation composition, Alegiance alegiance) {
+	public Entity(Coordinates position, Image sprite, Alegiance alegiance) {
 		this.movement = new EuclidianVector(0, 0, 0);
 		this.movement.setInitialPoint(position);
-		this.animationSet = composition;
+		this.sprite = sprite;
 		this.status = Status.OPERATIONAL;
 		this.alegiance = alegiance;
 	}
@@ -36,7 +35,7 @@ public abstract class Entity {
 	}
 
 	public Image getSprite() {
-		return animationSet.getFrame();
+		return sprite;
 	}
 	
 	public Status getStatus() {

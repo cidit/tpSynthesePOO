@@ -1,20 +1,19 @@
-package plugged;
+package assets.entities;
 
-import assets.entities.Alegiance;
-import assets.entities.Projectile;
-import assets.graphic.Animation;
+import java.awt.Image;
+
 import assets.util.Coordinates;
 
 /**
- * Class defining a missile as a type of projectile.
+ * Class defining a hostile mob.
  * 
  * @author cidit
- *
+ * 
  */
-public class Missile extends Projectile {
+public class Enemy extends Mob {
 
-	public Missile(Coordinates position, Animation composition, Alegiance alegiance) {
-		super(position, composition, alegiance);
+	public Enemy(Coordinates position, Image sprite, int MAXHEALTH) {
+		super(position, sprite, MAXHEALTH, Alegiance.HOSTILE);
 		// TODO Auto-generated constructor stub
 	}
 
