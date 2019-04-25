@@ -1,4 +1,4 @@
-package game;
+package adaptedOutputManager;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
