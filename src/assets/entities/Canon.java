@@ -20,7 +20,7 @@ public class Canon extends Mob implements Weaponized {
 	}
 
 	@Override
-	public Projectile shoot() {
+	public Missile shoot() {
 		// TODO Auto-generated method stub
 		return null;
 	}

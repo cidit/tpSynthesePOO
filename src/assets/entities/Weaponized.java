@@ -8,6 +8,6 @@ package assets.entities;
  */
 public interface Weaponized {
 
-	public Projectile shoot();
+	public Missile shoot();
 
 }

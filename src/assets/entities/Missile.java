@@ -10,7 +10,7 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public class Missile extends Projectile {
+public class Missile extends Entity {
 
 	public Missile(Coordinates position, Image sprite, Alegiance alegiance) {
 		super(position, sprite, alegiance);
