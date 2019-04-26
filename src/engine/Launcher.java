@@ -1,4 +1,4 @@
-package game;
+package engine;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
