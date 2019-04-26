@@ -63,7 +63,6 @@ public abstract class Entity {
 		case HIT:
 			getHit();
 			break;
-		case INVINCIBLE:
 		case OPERATIONAL:
 			getOperationnal();
 			break;
@@ -97,7 +96,7 @@ public abstract class Entity {
 	 */
 	public static enum Status {
 
-		OPERATIONAL, INVINCIBLE, HIT, DESTROYED;
+		OPERATIONAL, HIT, DESTROYED;
 
 	}
 }

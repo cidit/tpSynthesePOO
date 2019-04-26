@@ -11,10 +11,16 @@ import assets.util.Coordinates;
  *
  */
 public class Missile extends Entity {
+	private int damage = 10;
 
 	public Missile(Coordinates position, Image sprite, Alegiance alegiance) {
 		super(position, sprite, alegiance);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void hitTarget(Mob mob) {
+		status = Status.DESTROYED;
+		mob.getDamaged(damage);
 	}
 
 	@Override

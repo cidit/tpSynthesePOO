@@ -50,21 +50,19 @@ public class Canon extends Mob implements Weaponized {
 
 	@Override
 	protected void getOperationnal() {
-		// TODO
 		movement.setInitialPoint(movement.getTerminalPoint());
 	}
 
 	@Override
 	protected void getHit() {
 		// TODO 
-		status = Status.INVINCIBLE;
+		status = Status.OPERATIONAL;
 
 	}
 
 	@Override
 	protected void getDestroyed() {
-		// TODO Auto-generated method stub
-
+		// TODO 
 	}
 
 }

@@ -23,6 +23,7 @@ public abstract class Mob extends Entity {
 
 	public void getDamaged(int damage) {
 		this.damage += damage;
+		status = Status.HIT;
 	}
 
 	public int getHealth() {
