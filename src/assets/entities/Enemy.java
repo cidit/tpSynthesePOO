@@ -34,5 +34,17 @@ public class Enemy extends Mob {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Enumeration of possible statuses that an entity can have.
+	 * 
+	 * @author cidit
+	 *
+	 */
+	public enum Status {
+
+		OPERATIONAL, INVINCIBLE, HIT, DESTROYED;
+
+	}
 
 }

@@ -12,7 +12,7 @@ import assets.util.EuclidianVector;
  *
  */
 public abstract class Entity {
-	
+
 	protected int speed = 10;
 	protected EuclidianVector movement;
 	protected Image sprite;
@@ -26,11 +26,11 @@ public abstract class Entity {
 		this.status = Status.OPERATIONAL;
 		this.alegiance = alegiance;
 	}
-	
+
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-	
+
 	public int getSpeed() {
 		return speed;
 	}
@@ -46,15 +46,15 @@ public abstract class Entity {
 	public Image getSprite() {
 		return sprite;
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
-	
+
 	public Alegiance getAlegiance() {
 		return alegiance;
 	}
-	
+
 	public void update() {
 		switch (status) {
 		case DESTROYED:
@@ -68,7 +68,7 @@ public abstract class Entity {
 			getOperationnal();
 			break;
 		}
-		
+
 	}
 
 	protected abstract void getOperationnal();
@@ -77,6 +77,29 @@ public abstract class Entity {
 
 	protected abstract void getDestroyed();
 
+	/**
+	 * Enumeration of possible allegiances an entity can have towards the player
+	 * 
+	 * @author cidit
+	 *
+	 */
+	public static enum Alegiance {
+
+		FRIENDLY, HOSTILE, NEUTRAL, NONE;
+
+	}
+
+	/**
+	 * Enumeration of possible statuses that an entity can have.
+	 * 
+	 * @author cidit
+	 *
+	 */
+	public static enum Status {
+
+		OPERATIONAL, INVINCIBLE, HIT, DESTROYED;
+
+	}
 }
 
 /**

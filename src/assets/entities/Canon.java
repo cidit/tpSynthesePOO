@@ -39,6 +39,14 @@ public class Canon extends Mob implements Weaponized {
 		default:
 		}
 	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	
+	public int getSpeed() {
+		return speed;
+	}
 
 	@Override
 	protected void getOperationnal() {
