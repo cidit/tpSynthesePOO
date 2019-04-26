@@ -53,7 +53,7 @@ public class Coordinates {
 	public static Coordinates getReflexionFromOrigin(Coordinates coordinates) {
 		return new Coordinates(-coordinates.x, -coordinates.y, -coordinates.z);
 	}
-	
+
 	public static Coordinates stringToCoordinates(String formatedCoordinates) {
 		char delimiter = ';';
 		int amountOfDelimiters = countCharInString(delimiter, formatedCoordinates);
@@ -72,7 +72,7 @@ public class Coordinates {
 		}
 		return new Coordinates(x, y, z);
 	}
-	
+
 	private static float floatToPrecision(float f, int precision) {
 		int mult = (int) Math.pow(10, precision);
 		float tmp = (int) f * mult;
