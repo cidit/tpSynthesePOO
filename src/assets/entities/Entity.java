@@ -12,8 +12,8 @@ import assets.util.EuclidianVector;
  *
  */
 public abstract class Entity {
+	
 	protected int speed = 10;
-
 	protected EuclidianVector movement;
 	protected Image sprite;
 	protected Status status;
