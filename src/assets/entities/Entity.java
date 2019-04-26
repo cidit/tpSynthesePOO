@@ -12,6 +12,7 @@ import assets.util.EuclidianVector;
  *
  */
 public abstract class Entity {
+	protected int speed = 10;
 
 	protected EuclidianVector movement;
 	protected Image sprite;
@@ -24,6 +25,14 @@ public abstract class Entity {
 		this.sprite = sprite;
 		this.status = Status.OPERATIONAL;
 		this.alegiance = alegiance;
+	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	
+	public int getSpeed() {
+		return speed;
 	}
 
 	public EuclidianVector getMovement() {

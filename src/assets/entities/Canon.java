@@ -28,10 +28,10 @@ public class Canon extends Mob implements Weaponized {
 	public void move(Direction d) {
 		switch (d) {
 		case LEFT:
-			movement.add(new EuclidianVector(-1, 0));
+			movement.add(new EuclidianVector(-3*speed, 0));
 			break;
 		case RIGHT:
-			movement.add(new EuclidianVector(1, 0));
+			movement.add(new EuclidianVector(3*speed, 0));
 			break;
 		case NONE:
 			movement.setTerminalPoint(movement.getInitialPoint());
