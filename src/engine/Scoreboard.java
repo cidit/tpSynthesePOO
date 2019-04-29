@@ -137,7 +137,6 @@ public final class Scoreboard {
 			return name + ":" + points + ";";
 		}
 
-		// might end up faulty, verify when testing that highscore is at beginning
 		@Override
 		public int compareTo(Score o) {
 			return o.points - this.points;
