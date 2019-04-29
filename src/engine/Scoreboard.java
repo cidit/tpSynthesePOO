@@ -12,6 +12,9 @@ import java.util.List;
  * modifications to the scoreboard. Closing function saves the new scoreboard
  * into the file
  * 
+ * may need to revise the code and use BufferedReader and BufferedWriter
+ * (wrapping classes for FileWriter and FileReader)
+ * 
  * @author cidit
  *
  */
