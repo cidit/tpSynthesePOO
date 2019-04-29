@@ -76,7 +76,7 @@ public class Scoreboard {
 	public Score getHighScore() {
 		return scores.get(0);
 	}
-	
+
 	public List<Score> getScoreboard() {
 		return scores;
 	}
@@ -92,7 +92,7 @@ public class Scoreboard {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		String s = "";
