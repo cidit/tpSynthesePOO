@@ -12,7 +12,7 @@ import assets.util.EuclidianVector;
  * @author cidit
  *
  */
-public class Canon extends Mob implements Weaponized {
+public class Canon extends Mob {
 
 	public Canon(Coordinates position, Image sprite, int MAXHEALTH) {
 		super(position, sprite, MAXHEALTH, Alegiance.FRIENDLY);
@@ -38,10 +38,6 @@ public class Canon extends Mob implements Weaponized {
 			break;
 		default:
 		}
-	}
-	
-	public int getSpeed() {
-		return speed;
 	}
 
 	@Override

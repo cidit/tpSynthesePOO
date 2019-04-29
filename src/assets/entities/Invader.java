@@ -18,21 +18,27 @@ public class Invader extends Mob {
 	}
 
 	@Override
+	public Missile shoot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	protected void getOperationnal() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void getHit() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void getDestroyed() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

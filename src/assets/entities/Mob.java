@@ -10,7 +10,7 @@ import assets.util.Coordinates;
  * @author cidit
  *
  */
-public abstract class Mob extends Entity {
+public abstract class Mob extends Entity implements Weaponized {
 
 	private final int MAXHEALTH;
 	private int damage;
