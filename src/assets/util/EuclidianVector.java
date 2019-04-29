@@ -1,6 +1,6 @@
 package assets.util;
 
-public class EuclidianVector {
+public final class EuclidianVector {
 
 	private Coordinates initialPoint;
 	private float xProjection, yProjection, zProjection;

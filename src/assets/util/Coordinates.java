@@ -1,6 +1,6 @@
 package assets.util;
 
-public class Coordinates {
+public final class Coordinates {
 
 	private float x, y, z;
 

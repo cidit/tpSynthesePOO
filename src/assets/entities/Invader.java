@@ -10,9 +10,9 @@ import assets.util.Coordinates;
  * @author cidit
  * 
  */
-public class Enemy extends Mob {
+public class Invader extends Mob {
 
-	public Enemy(Coordinates position, Image sprite, int MAXHEALTH) {
+	public Invader(Coordinates position, Image sprite, int MAXHEALTH) {
 		super(position, sprite, MAXHEALTH, Alegiance.HOSTILE);
 		// TODO Auto-generated constructor stub
 	}
@@ -33,18 +33,6 @@ public class Enemy extends Mob {
 	protected void getDestroyed() {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	/**
-	 * Enumeration of possible statuses that an entity can have.
-	 * 
-	 * @author cidit
-	 *
-	 */
-	public enum Status {
-
-		OPERATIONAL, INVINCIBLE, HIT, DESTROYED;
-
 	}
 
 }

@@ -27,35 +27,35 @@ public abstract class Entity {
 		this.alegiance = alegiance;
 	}
 
-	public void setSpeed(int speed) {
+	public final void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
-	public int getSpeed() {
+	public final int getSpeed() {
 		return speed;
 	}
 
-	public EuclidianVector getMovement() {
+	public final EuclidianVector getMovement() {
 		return movement;
 	}
 
-	public Coordinates getPosition() {
+	public final Coordinates getPosition() {
 		return movement.getInitialPoint();
 	}
 
-	public Image getSprite() {
+	public final Image getSprite() {
 		return sprite;
 	}
 
-	public Status getStatus() {
+	public final Status getStatus() {
 		return status;
 	}
 
-	public Alegiance getAlegiance() {
+	public final Alegiance getAlegiance() {
 		return alegiance;
 	}
 
-	public void update() {
+	public final void update() {
 		switch (status) {
 		case DESTROYED:
 			getDestroyed();
@@ -75,30 +75,6 @@ public abstract class Entity {
 	protected abstract void getHit();
 
 	protected abstract void getDestroyed();
-
-	/**
-	 * Enumeration of possible allegiances an entity can have towards the player
-	 * 
-	 * @author cidit
-	 *
-	 */
-	public static enum Alegiance {
-
-		FRIENDLY, HOSTILE, NEUTRAL, NONE;
-
-	}
-
-	/**
-	 * Enumeration of possible statuses that an entity can have.
-	 * 
-	 * @author cidit
-	 *
-	 */
-	public static enum Status {
-
-		OPERATIONAL, HIT, DESTROYED;
-
-	}
 }
 
 /**

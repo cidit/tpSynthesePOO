@@ -1,6 +1,6 @@
 package engine;
 
-public class Game {
+public final class Game {
 
 	public Game() {
 		// TODO empty constructor

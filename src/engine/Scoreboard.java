@@ -18,7 +18,7 @@ import java.util.List;
  * @author cidit
  *
  */
-public class Scoreboard {
+public final class Scoreboard {
 
 	private List<Score> scores;
 	private final String savePath;

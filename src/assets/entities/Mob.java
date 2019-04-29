@@ -21,16 +21,16 @@ public abstract class Mob extends Entity {
 		this.damage = 0;
 	}
 
-	public void getDamaged(int damage) {
+	public final void getDamaged(int damage) {
 		this.damage += damage;
 		status = Status.HIT;
 	}
 
-	public int getHealth() {
+	public final int getHealth() {
 		return MAXHEALTH - damage;
 	}
 
-	public int getMaxHealth() {
+	public final int getMaxHealth() {
 		return MAXHEALTH;
 	}
 
