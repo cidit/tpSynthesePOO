@@ -3,7 +3,7 @@ package assets.entities;
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;
 
-public abstract class Entity {
+public abstract class Entity implements Movable {
 	
 	protected EuclidianVector movementVector;
 	protected Allegiance allegiance;
@@ -28,6 +28,6 @@ public abstract class Entity {
 	}
 	
 	public void update() {
-		
+		move();
 	}
 }
