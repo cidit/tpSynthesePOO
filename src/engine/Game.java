@@ -28,7 +28,7 @@ public final class Game {
 		over = false;
 		this.width = width;
 		this.height = height;
-		entities = new ArrayList<Entity>(); // may use CopyOnWriteArrayList later
+		entities = new ArrayList<Entity>();
 
 		player = new Canon(new Coordinates(width / 2, height / 10));
 		entities.add(player);
