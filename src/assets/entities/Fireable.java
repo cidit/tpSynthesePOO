@@ -1,6 +1,6 @@
 package assets.entities;
 
-public interface Firable {
+public interface Fireable {
 	
 	public Missile shoot();
 
