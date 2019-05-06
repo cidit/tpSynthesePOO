@@ -2,7 +2,7 @@ package assets.entities;
 
 import assets.util.Coordinates;
 
-public class Missile extends Entity {
+public final class Missile extends Entity {
 
 	public Missile(Coordinates position, Allegiance allegiance) {
 		super(position, allegiance);

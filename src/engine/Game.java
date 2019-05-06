@@ -1,16 +1,38 @@
 package engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import assets.entities.Entity;
+
 public final class Game {
+	
+	private int width, height;
+	List<Entity> entities;
 
-	public Game() {
-		// TODO empty constructor
+	public Game(int width, int height) {
+		this.width = width;
+		this.height = height;
+		entities = new ArrayList<Entity>();
+		
 	}
 
-	/**
-	 * the "step" function. the manager.
-	 * 
-	 */
-	public void update() {
-		// TODO empty manager
+	public void nextUpdate() {
+		
+		
+		
 	}
+	
+	private void movementManager() {
+		for (Entity entity : entities) {
+			entity.move();
+		}
+	}
+	
+	private void boundaryManager() {
+		for (Entity entity : entities) {
+			entity.fixPosition(width, height);
+		}
+	}
+	
 }

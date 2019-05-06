@@ -26,8 +26,9 @@ public abstract class Entity implements Movable {
 	public Status getStatus() {
 		return status;
 	}
-	
-	public void update() {
-		move();
+
+	public void fixPosition(int width, int height) {
+		// TODO Auto-generated method stub
+		
 	}
 }
