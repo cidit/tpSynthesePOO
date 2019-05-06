@@ -17,6 +17,10 @@ public final class Formation{
 	
 	private static class Column extends ArrayList<Invader> {
 		
+		public Invader getLast() {
+			return get(size());
+		}
+		
 	}
 
 }
