@@ -10,7 +10,7 @@ public final class Canon extends Entity implements Fireable {
 	}
 
 	@Override
-	public Missile shoot() {
+	public Missile fire() {
 		// TODO Auto-generated method stub
 		return null;
 	}

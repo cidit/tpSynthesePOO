@@ -5,6 +5,8 @@ import java.util.List;
 
 import assets.entities.Canon;
 import assets.entities.Entity;
+import assets.entities.Fireable;
+import assets.entities.Missile;
 import assets.entities.Status;
 import assets.util.Coordinates;
 
@@ -45,6 +47,15 @@ public final class Game {
 	private void boundaryManager() {
 		for (Entity entity : entities)
 			entity.fixPosition(width, height);
+	}
+	
+	private void addNewMissiles() {
+		for (Entity entity : entities)
+			if(entity instanceof Fireable) {
+				Missile missile = ((Fireable) entity).fire();
+				if (missile != null)
+					entities.add(missile);
+			}
 	}
 
 	private void removeDestroyedEntities() {
