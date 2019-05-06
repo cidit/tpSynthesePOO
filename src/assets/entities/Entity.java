@@ -45,7 +45,7 @@ public abstract class Entity implements Movable {
 	}
 
 	@Override
-	public void fixPosition(int width, int height) {
+	public void borderReaction(int width, int height) {
 		float x = position.getX(), y = position.getY();
 		if (x > width)
 			x = width;

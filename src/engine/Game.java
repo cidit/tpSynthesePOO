@@ -46,7 +46,7 @@ public final class Game {
 
 	private void boundaryManager() {
 		for (Entity entity : entities)
-			entity.fixPosition(width, height);
+			entity.borderReaction(width, height);
 	}
 	
 	private void addNewMissiles() {

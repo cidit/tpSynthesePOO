@@ -10,7 +10,7 @@ public final class Missile extends Entity {
 	}
 
 	@Override
-	public void fixPosition(int width, int height) {
+	public void borderReaction(int width, int height) {
 		float x = position.getX(), y = position.getY();
 		if (x > width || x < 0 || y > height || y < 0)
 			status = Status.DESTROYED;
