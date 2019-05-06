@@ -11,8 +11,9 @@ public final class Canon extends Entity implements Fireable {
 
 	@Override
 	public Missile fire() {
-		// TODO Auto-generated method stub
-		return null;
+		Missile missile = new Missile(position, allegiance);
+		missile.setDirection(Direction.UP);
+		return missile;
 	}
 
 }
