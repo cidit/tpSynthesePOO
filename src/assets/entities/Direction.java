@@ -10,16 +10,20 @@ public enum Direction {
 	DOWN(0, -1), 
 	NONE(0, 0);
 
-	private float xProjection;
-	private float yProjection;
+	private float xVariation;
+	private float yVariation;
 
-	private Direction(float xProjection, float yProjection) {
-		this.xProjection = xProjection;
-		this.yProjection = yProjection;
+	private Direction(float xVariation, float yVariation) {
+		this.xVariation = xVariation;
+		this.yVariation = yVariation;
 	}
 	
-	public EuclidianVector getMovement() {
-		return new EuclidianVector(xProjection, yProjection);
+	public float getXVariation() {
+		return xVariation;
+	}
+	
+	public float getYVariation() {
+		return yVariation;
 	}
 
 }

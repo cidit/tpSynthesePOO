@@ -5,20 +5,20 @@ import assets.util.EuclidianVector;
 
 public abstract class Entity implements Movable {
 
-	protected EuclidianVector movementVector;
+	protected Coordinates position;
 	protected Allegiance allegiance;
 	protected Status status;
 	private Direction direction;
 
 	public Entity(Coordinates position, Allegiance allegiance) {
-		movementVector = new EuclidianVector(position, position);
+		this.position = position;
 		this.allegiance = allegiance;
 		status = Status.OPERATIONAL;
 		direction = Direction.NONE;
 	}
 
 	public Coordinates getPosition() {
-		return movementVector.getInitialPoint();
+		return position;
 	}
 
 	public Allegiance getAllegiance() {
@@ -33,21 +33,19 @@ public abstract class Entity implements Movable {
 		return direction;
 	}
 
-	public void changeDirection(Direction direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
-		EuclidianVector directionMovement = direction.getMovement();
-		this.movementVector.setProjections(directionMovement.getXProjection(), directionMovement.getYProjection(), 0);
 	}
 
 	@Override
 	public void move() {
-		Coordinates nextPosition = movementVector.getTerminalPoint();
-		movementVector.setInitialPoint(nextPosition);
+		float x = position.getX() + direction.getXVariation();
+		float y = position.getY() + direction.getYVariation();
+		position = new Coordinates(x, y);
 	}
 
 	@Override
 	public void fixPosition(int width, int height) {
-		Coordinates position = movementVector.getInitialPoint();
 		float x = position.getX(), y = position.getY();
 		if (x > width)
 			x = width;
@@ -57,8 +55,7 @@ public abstract class Entity implements Movable {
 			y = height;
 		if (y < 0)
 			y = 0;
-		Coordinates newPosition = new Coordinates(x, y);
-		movementVector.setInitialPoint(newPosition);
+		position = new Coordinates(x, y);
 	}
 
 	public static void collide(Entity a, Entity b) {
