@@ -9,10 +9,4 @@ public final class Missile extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

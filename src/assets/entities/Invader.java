@@ -4,15 +4,9 @@ import assets.util.Coordinates;
 
 public final class Invader extends Entity implements Firable {
 
-	public Invader(Coordinates position, Allegiance allegiance) {
-		super(position, allegiance);
+	public Invader(Coordinates position) {
+		super(position, Allegiance.HOSTILE);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
