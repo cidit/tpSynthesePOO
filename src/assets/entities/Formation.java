@@ -1,17 +1,29 @@
 package assets.entities;
 
-public final class Formation implements Movable{
+import java.util.ArrayList;
+import java.util.List;
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
+public final class Formation{
+
+	private final int rows;
+	private int columns;
+	private List<Column> array;
+
+	public Formation(int rows, int columns) {
+		this.rows = rows;
+		this.columns = columns;
+		array = new ArrayList<Column>(columns);
 	}
-
-	@Override
-	public void fixPosition(int width, int height) {
-		// TODO Auto-generated method stub
+	
+	private static class Column extends ArrayList<Invader> {
 		
 	}
 
 }
+
+
+/*
+ * 
+ * invader coordinate = index in formation * sprite size + offset
+ * 
+ */
