@@ -8,11 +8,13 @@ public abstract class Entity implements Movable {
 	protected EuclidianVector movementVector;
 	protected Allegiance allegiance;
 	protected Status status;
+	private Direction direction;
 
 	public Entity(Coordinates position, Allegiance allegiance) {
 		movementVector = new EuclidianVector(position, position);
 		this.allegiance = allegiance;
 		status = Status.OPERATIONAL;
+		direction = Direction.NONE;
 	}
 
 	public Coordinates getPosition() {
@@ -27,16 +29,20 @@ public abstract class Entity implements Movable {
 		return status;
 	}
 
-	public static void collide(Entity a, Entity b) {
-		if (a.allegiance != b.allegiance)
-			a.status = b.status = Status.DESTROYED;
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public void changeDirection(Direction direction) {
+		this.direction = direction;
+		EuclidianVector directionMovement = direction.getMovement();
+		this.movementVector.setProjections(directionMovement.getXProjection(), directionMovement.getYProjection(), 0);
 	}
 
 	@Override
 	public void move() {
 		Coordinates nextPosition = movementVector.getTerminalPoint();
 		movementVector.setInitialPoint(nextPosition);
-
 	}
 
 	@Override
@@ -53,5 +59,10 @@ public abstract class Entity implements Movable {
 			y = 0;
 		Coordinates newPosition = new Coordinates(x, y);
 		movementVector.setInitialPoint(newPosition);
+	}
+
+	public static void collide(Entity a, Entity b) {
+		if (a.allegiance != b.allegiance)
+			a.status = b.status = Status.DESTROYED;
 	}
 }
