@@ -3,7 +3,7 @@ package assets.entities;
 import assets.util.Coordinates;
 import assets.util.EuclidianVector;
 
-public abstract class Entity {
+public abstract class Entity implements Movable {
 
 	protected Coordinates position;
 	protected Allegiance allegiance;
@@ -37,12 +37,14 @@ public abstract class Entity {
 		this.direction = direction;
 	}
 
+	@Override
 	public void move() {
 		float x = position.getX() + direction.getXVariation();
 		float y = position.getY() + direction.getYVariation();
 		position = new Coordinates(x, y);
 	}
 
+	@Override
 	public void fixPosition(int width, int height) {
 		float x = position.getX(), y = position.getY();
 		if (x > width)
