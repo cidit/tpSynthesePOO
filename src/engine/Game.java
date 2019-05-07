@@ -5,15 +5,16 @@ import java.util.List;
 
 import assets.entities.Canon;
 import assets.entities.Entity;
-import assets.entities.Fireable;
 import assets.entities.Formation;
 import assets.entities.Missile;
-import assets.entities.Status;
+import assets.entities.enumerations.Status;
+import assets.entities.interfaces.Fireable;
 import assets.util.Coordinates;
 import assets.util.Dimention;
 
 /**
  * manages every entities and the progression of the game
+ * TODO CLEAN MAGIC NUMBERS
  * 
  * @author cidit
  *

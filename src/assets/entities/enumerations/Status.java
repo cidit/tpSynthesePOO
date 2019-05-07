@@ -1,4 +1,4 @@
-package assets.entities;
+package assets.entities.enumerations;
 
 public enum Status {
 	

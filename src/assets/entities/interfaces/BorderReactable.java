@@ -1,4 +1,4 @@
-package assets.entities;
+package assets.entities.interfaces;
 
 import assets.util.Dimention;
 

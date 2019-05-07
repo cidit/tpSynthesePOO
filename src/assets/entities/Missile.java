@@ -1,5 +1,7 @@
 package assets.entities;
 
+import assets.entities.enumerations.Allegiance;
+import assets.entities.enumerations.Status;
 import assets.util.Coordinates;
 import assets.util.Dimention;
 

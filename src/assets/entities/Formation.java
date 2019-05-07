@@ -3,6 +3,8 @@ package assets.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import assets.entities.enumerations.Direction;
+import assets.entities.interfaces.BorderReactable;
 import assets.util.Coordinates;
 import assets.util.Dimention;
 

@@ -1,5 +1,8 @@
 package assets.entities;
 
+import assets.entities.enumerations.Allegiance;
+import assets.entities.enumerations.Direction;
+import assets.entities.interfaces.Fireable;
 import assets.util.Coordinates;
 
 public final class Invader extends Entity implements Fireable {

@@ -1,5 +1,9 @@
 package assets.entities;
 
+import assets.entities.enumerations.Allegiance;
+import assets.entities.enumerations.Direction;
+import assets.entities.enumerations.Status;
+import assets.entities.interfaces.Movable;
 import assets.util.Coordinates;
 import assets.util.Dimention;
 
