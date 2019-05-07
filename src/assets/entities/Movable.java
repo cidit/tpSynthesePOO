@@ -1,13 +1,12 @@
 package assets.entities;
 
-public interface Movable {
+import assets.util.Coordinates;
+
+public interface Movable extends BorderReactable {
 
 	public void move();
 	
-	/**
-	 * must enter coordinate limits!!
-	 * @param screen width - sprite width
-	 * @param screen height - sprite height
-	 */
-	public void borderReaction(int width, int height);
+	//developer tool
+	public void teleport(Coordinates newCoordonates);
+	
 }

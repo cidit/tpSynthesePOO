@@ -1,7 +1,6 @@
 package assets.entities;
 
 import assets.util.Coordinates;
-import assets.util.EuclidianVector;
 
 public abstract class Entity implements Movable {
 
@@ -36,11 +35,6 @@ public abstract class Entity implements Movable {
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
-	
-	//dev tool
-	public void teleport(Coordinates newCoords) {
-		position = newCoords;
-	}
 
 	@Override
 	public void move() {
@@ -61,6 +55,11 @@ public abstract class Entity implements Movable {
 		if (y < 0)
 			y = 0;
 		position = new Coordinates(x, y);
+	}
+	
+	@Override
+	public void teleport(Coordinates newCoords) {
+		position = newCoords;
 	}
 
 	public static void collide(Entity a, Entity b) {
