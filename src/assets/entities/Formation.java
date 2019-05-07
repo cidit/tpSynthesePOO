@@ -10,11 +10,12 @@ public final class Formation implements BorderReactable {
 	private int rows;
 	private int columns;
 	private List<Invader> units;
+	private Direction direction;
 
 	public Formation(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		Invader.direction = Direction.RIGHT;
+		direction = Direction.RIGHT;
 		units = new ArrayList<Invader>(columns);
 		fill();
 	}
@@ -43,16 +44,26 @@ public final class Formation implements BorderReactable {
 	public void borderReaction(int width, int height) {
 		for (Invader invader : units) {
 			float x = invader.getPosition().getX();
-			if (Invader.direction == Direction.DOWN) {
+			
+			// TODO reverify dryness with teach 
+			if (direction == Direction.DOWN) {
 				if (x >= width)
-					Invader.direction = Direction.LEFT;
+					direction = Direction.LEFT;
 				if (x <= 0)
-					Invader.direction = Direction.RIGHT;
+					direction = Direction.RIGHT;
+				updateUnitDirections();
 				break;
 			} else if (x >= width || x <= 0) {
-				Invader.direction = Direction.DOWN;
+				direction = Direction.DOWN;
+				updateUnitDirections();
 				break;
 			}
+		}
+	}
+
+	private void updateUnitDirections() {
+		for (Invader invader : units) {
+			invader.setDirection(direction);
 		}
 	}
 }
