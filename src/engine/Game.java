@@ -7,6 +7,7 @@ import assets.entities.Canon;
 import assets.entities.Entity;
 import assets.entities.Formation;
 import assets.entities.Missile;
+import assets.entities.enumerations.Direction;
 import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Fireable;
 import assets.util.Coordinate;
@@ -21,32 +22,46 @@ import assets.util.Dimention;
  */
 public final class Game {
 
-	private boolean over;
 	private Dimention surface;
+	private boolean over;
+	private int score;
 
 	List<Entity> entities;
 	private Canon player;
-	private Formation invaders;
-	private Dimention entityDimention = new Dimention(8, 8);
+	private Formation invasion;
 
-	public Game(Dimention surface) {
+	public Game(Dimention surface, Dimention unitOffset, Dimention invasionStrategy) {
 		this.surface = surface;
 		over = false;
+		score = 0;
+		
+		final int w = surface.getWidth(), h = surface.getHeight();
+		final int canonX = w - (w / 2), canonY = h - (h / 10);
+		player = new Canon(new Coordinate(canonX, canonY));
+		
+		invasion = new Formation(invasionStrategy);
+		invasion.setUnitSpacing(unitOffset);
 		
 		entities = new ArrayList<Entity>();
-
-		player = new Canon(new Coordinate(surface.getWidth() / 2, surface.getHeight() / 10));
-		invaders = new Formation(new Dimention(4, 3));
-		invaders.setUnitSpacing(entityDimention);
-		
 		entities.add(player);
-		entities.addAll(invaders.getUnits());
+		entities.addAll(invasion.getUnits());
 		
 	}
 
+	//----- updates
+	
 	public List<Entity> nextUpdate() {
-		// TODO
+		removeDestroyedEntities();
+		moveEntities();
+		boundaryManager();
+		fireableFire();
+		player.updateFireRateTimer();
+		verifyPlayerStatus();
 		return entities;
+	}
+	
+	private void removeDestroyedEntities() {
+		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
 	}
 
 	private void moveEntities() {
@@ -55,12 +70,12 @@ public final class Game {
 	}
 
 	private void boundaryManager() {
-		invaders.borderReaction(surface);
+		invasion.borderReaction(surface);
 		for (Entity entity : entities)
 			entity.borderReaction(surface);
 	}
 	
-	private void addNewMissiles() {
+	private void fireableFire() {
 		for (Entity entity : entities)
 			if(entity instanceof Fireable) {
 				Missile missile = ((Fireable) entity).fire();
@@ -68,9 +83,30 @@ public final class Game {
 					entities.add(missile);
 			}
 	}
-
-	private void removeDestroyedEntities() {
-		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
+	
+	private void verifyPlayerStatus() {
+		over = player.getStatus() == Status.DESTROYED ? true: false;
 	}
-
+	
+	//----- player movement
+	
+	public void playerGoesRight() {
+		player.setDirection(Direction.RIGHT);
+	}
+	
+	public void playerGoesLeft() {
+		player.setDirection(Direction.LEFT);
+	}
+	
+	public void playerGoesNowhere() {
+		player.setDirection(Direction.NONE);
+	}
+	
+	//----- score 
+	
+	//----- checkers
+	
+	public boolean isOver() {
+		return over;
+	}
 }
