@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import assets.util.Coordinates;
+import assets.util.Dimention;
 
 public final class Formation implements BorderReactable {
 
@@ -12,9 +13,9 @@ public final class Formation implements BorderReactable {
 	private List<Invader> units;
 	private Direction direction;
 
-	public Formation(int rows, int columns) {
-		this.rows = rows;
-		this.columns = columns;
+	public Formation(Dimention dimention) {
+		columns = dimention.getWidth();
+		rows = dimention.getHeight();
 		direction = Direction.RIGHT;
 		units = new ArrayList<Invader>(columns);
 		fill();
@@ -28,11 +29,11 @@ public final class Formation implements BorderReactable {
 		}
 	}
 
-	public void setUnitSpacing(int unitWidth, int unitHeight) {
+	public void setUnitSpacing(Dimention spriteDimentions) {
 		for (Invader invader : units) {
 			Coordinates indexInArray = invader.getPosition();
-			float xIndex = indexInArray.getX(), yIndex = indexInArray.getY();
-			invader.teleport(new Coordinates(xIndex * unitWidth, yIndex * unitHeight));
+			int xIndex = indexInArray.getX(), yIndex = indexInArray.getY();
+			invader.teleport(new Coordinates(xIndex * spriteDimentions.getWidth(), yIndex * spriteDimentions.getHeight()));
 		}
 	}
 
@@ -41,19 +42,19 @@ public final class Formation implements BorderReactable {
 	}
 
 	@Override
-	public void borderReaction(int width, int height) {
+	public void borderReaction(Dimention game) {
 		for (Invader invader : units) {
-			float x = invader.getPosition().getX();
-			
-			// TODO reverify dryness with teach 
+			int x = invader.getPosition().getX();
+
+			// TODO reverify dryness with teach
 			if (direction == Direction.DOWN) {
-				if (x >= width)
+				if (x >= game.getWidth())
 					direction = Direction.LEFT;
 				if (x <= 0)
 					direction = Direction.RIGHT;
 				updateUnitDirections();
 				break;
-			} else if (x >= width || x <= 0) {
+			} else if (x >= game.getWidth() || x <= 0) {
 				direction = Direction.DOWN;
 				updateUnitDirections();
 				break;

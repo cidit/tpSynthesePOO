@@ -1,6 +1,7 @@
 package assets.entities;
 
 import assets.util.Coordinates;
+import assets.util.Dimention;
 
 public final class Missile extends Entity {
 
@@ -10,9 +11,9 @@ public final class Missile extends Entity {
 	}
 
 	@Override
-	public void borderReaction(int width, int height) {
-		float x = position.getX(), y = position.getY();
-		if (x > width || x < 0 || y > height || y < 0)
+	public void borderReaction(Dimention game) {
+		int x = position.getX(), y = position.getY();
+		if (x > game.getWidth() || x < 0 || y > game.getHeight() || y < 0)
 			status = Status.DESTROYED;
 	}
 }

@@ -1,5 +1,7 @@
 package assets.entities;
 
+import assets.util.Dimention;
+
 public interface BorderReactable {
 
 	/**
@@ -7,6 +9,6 @@ public interface BorderReactable {
 	 * @param screen width - sprite width
 	 * @param screen height - sprite height
 	 */
-	public void borderReaction(int width, int height);
+	public void borderReaction(Dimention game);
 	
 }

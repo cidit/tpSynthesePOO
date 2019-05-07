@@ -1,6 +1,7 @@
 package assets.entities;
 
 import assets.util.Coordinates;
+import assets.util.Dimention;
 
 public abstract class Entity implements Movable {
 
@@ -38,20 +39,20 @@ public abstract class Entity implements Movable {
 
 	@Override
 	public void move() {
-		float x = position.getX() + direction.getXVariation();
-		float y = position.getY() + direction.getYVariation();
+		int x = position.getX() + direction.getXVariation();
+		int y = position.getY() + direction.getYVariation();
 		position = new Coordinates(x, y);
 	}
 
 	@Override
-	public void borderReaction(int width, int height) {
-		float x = position.getX(), y = position.getY();
-		if (x > width)
-			x = width;
+	public void borderReaction(Dimention game) {
+		int x = position.getX(), y = position.getY();
+		if (x > game.getWidth())
+			x = game.getWidth();
 		if (x < 0)
 			x = 0;
-		if (y > height)
-			y = height;
+		if (y > game.getHeight())
+			y = game.getHeight();
 		if (y < 0)
 			y = 0;
 		position = new Coordinates(x, y);

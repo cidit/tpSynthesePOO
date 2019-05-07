@@ -6,9 +6,11 @@ import java.util.List;
 import assets.entities.Canon;
 import assets.entities.Entity;
 import assets.entities.Fireable;
+import assets.entities.Formation;
 import assets.entities.Missile;
 import assets.entities.Status;
 import assets.util.Coordinates;
+import assets.util.Dimention;
 
 /**
  * manages every entities and the progression of the game
@@ -23,14 +25,19 @@ public final class Game {
 
 	List<Entity> entities;
 	private Canon player;
+	private Formation invaders;
+	private Dimention dimention;
 
-	public Game(int width, int height) {
+	public Game(Dimention dimention) {
 		over = false;
-		this.width = width;
-		this.height = height;
+		this.width = dimention.getWidth();
+		this.height = dimention.getHeight();
+		this.dimention = dimention; // TODO
+		
 		entities = new ArrayList<Entity>();
 
 		player = new Canon(new Coordinates(width / 2, height / 10));
+		invaders = new Formation(new Dimention(4, 3));
 		entities.add(player);
 	}
 
@@ -46,7 +53,7 @@ public final class Game {
 
 	private void boundaryManager() {
 		for (Entity entity : entities)
-			entity.borderReaction(width, height);
+			entity.borderReaction(dimention);
 	}
 	
 	private void addNewMissiles() {

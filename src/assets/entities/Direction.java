@@ -1,7 +1,5 @@
 package assets.entities;
 
-import assets.util.EuclidianVector;
-
 public enum Direction {
 
 	RIGHT(-1, 0), 
@@ -10,19 +8,19 @@ public enum Direction {
 	DOWN(0, -1), 
 	NONE(0, 0);
 
-	private float xVariation;
-	private float yVariation;
+	private int xVariation;
+	private int yVariation;
 
-	private Direction(float xVariation, float yVariation) {
+	private Direction(int xVariation, int yVariation) {
 		this.xVariation = xVariation;
 		this.yVariation = yVariation;
 	}
 	
-	public float getXVariation() {
+	public int getXVariation() {
 		return xVariation;
 	}
 	
-	public float getYVariation() {
+	public int getYVariation() {
 		return yVariation;
 	}
 
