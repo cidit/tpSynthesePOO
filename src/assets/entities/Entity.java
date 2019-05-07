@@ -36,6 +36,11 @@ public abstract class Entity implements Movable {
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
+	
+	//dev tool
+	public void teleport(Coordinates newCoords) {
+		position = newCoords;
+	}
 
 	@Override
 	public void move() {
