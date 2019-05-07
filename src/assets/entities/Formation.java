@@ -47,8 +47,6 @@ public final class Formation implements BorderReactable {
 	public void borderReaction(Dimention game) {
 		for (Invader invader : units) {
 			int x = invader.getPosition().getX();
-
-			// TODO reverify dryness with teach
 			if (direction == Direction.DOWN) {
 				if (x >= game.getWidth())
 					direction = Direction.LEFT;

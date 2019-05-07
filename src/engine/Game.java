@@ -22,24 +22,26 @@ import assets.util.Dimention;
 public final class Game {
 
 	private boolean over;
-	private int width, height;
+	private Dimention dimention;
 
 	List<Entity> entities;
 	private Canon player;
 	private Formation invaders;
-	private Dimention dimention;
+	private Dimention entityDimention = new Dimention(50, 50);
 
 	public Game(Dimention dimention) {
+		this.dimention = dimention;
 		over = false;
-		this.width = dimention.getWidth();
-		this.height = dimention.getHeight();
-		this.dimention = dimention; // TODO
 		
 		entities = new ArrayList<Entity>();
 
-		player = new Canon(new Coordinate(width / 2, height / 10));
+		player = new Canon(new Coordinate(dimention.getWidth() / 2, dimention.getHeight() / 10));
 		invaders = new Formation(new Dimention(4, 3));
+		invaders.setUnitSpacing(entityDimention);
+		
 		entities.add(player);
+		entities.addAll(invaders.getUnits());
+		
 	}
 
 	public List<Entity> nextUpdate() {
