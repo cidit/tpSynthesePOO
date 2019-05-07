@@ -21,6 +21,7 @@ public final class Formation implements BorderReactable {
 		direction = Direction.RIGHT;
 		units = new ArrayList<Invader>(columns);
 		fill();
+		updateUnitDirections();
 	}
 
 	private void fill() {
