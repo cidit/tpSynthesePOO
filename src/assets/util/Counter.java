@@ -30,6 +30,13 @@ public class Counter {
 	public void count() {
 		count++;
 	}
+	
+	/**
+	 * Resets the counter.
+	 */
+	public void reset() {
+		count = 0;
+	}
 
 	/**
 	 * Verifies the validity of the counter.
