@@ -1,8 +1,8 @@
 package assets.util;
 
 /**
- * Counter that counts with manual incrementations. The maximum incrementation
- * possible is Long.MAX_VALUE;
+ * Counter that counts with manual incrementations. The maximal amount of
+ * incrementations possible is Long.MAX_VALUE;
  * 
  * @author cidit
  *
@@ -17,7 +17,7 @@ public class Counter {
 	 * Constructor
 	 * 
 	 * @param ttl time to live before expiration (enter Long.MAX_VALUE for no
-	 *               expiration)
+	 *            expiration)
 	 */
 	public Counter(long ttl) {
 		this.ttl = ttl;
@@ -38,34 +38,6 @@ public class Counter {
 	 */
 	public boolean isExpired() {
 		return ttl < count ? true : false;
-	}
-
-	/**
-	 * Returns the count.
-	 * 
-	 * @return count
-	 */
-	public long getCount() {
-		return count;
-	}
-
-	/**
-	 * Returns the maximum amount of incrementations allowed before expiration.
-	 * 
-	 * @return time to live
-	 */
-	public long getTimeToLive() {
-		return ttl;
-	}
-
-	/**
-	 * Returns a floating-point number between 0 and 1 representing the ratio of
-	 * completion of the counter.
-	 * 
-	 * @return progression
-	 */
-	public float getProgression() {
-		return (float) count / ttl;
 	}
 
 }
