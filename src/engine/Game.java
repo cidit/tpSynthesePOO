@@ -22,20 +22,20 @@ import assets.util.Dimention;
 public final class Game {
 
 	private boolean over;
-	private Dimention dimention;
+	private Dimention surface;
 
 	List<Entity> entities;
 	private Canon player;
 	private Formation invaders;
-	private Dimention entityDimention = new Dimention(50, 50);
+	private Dimention entityDimention = new Dimention(8, 8);
 
-	public Game(Dimention dimention) {
-		this.dimention = dimention;
+	public Game(Dimention surface) {
+		this.surface = surface;
 		over = false;
 		
 		entities = new ArrayList<Entity>();
 
-		player = new Canon(new Coordinate(dimention.getWidth() / 2, dimention.getHeight() / 10));
+		player = new Canon(new Coordinate(surface.getWidth() / 2, surface.getHeight() / 10));
 		invaders = new Formation(new Dimention(4, 3));
 		invaders.setUnitSpacing(entityDimention);
 		
@@ -55,8 +55,9 @@ public final class Game {
 	}
 
 	private void boundaryManager() {
+		invaders.borderReaction(surface);
 		for (Entity entity : entities)
-			entity.borderReaction(dimention);
+			entity.borderReaction(surface);
 	}
 	
 	private void addNewMissiles() {
