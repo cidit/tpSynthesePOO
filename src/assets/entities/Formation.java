@@ -5,7 +5,7 @@ import java.util.List;
 
 import assets.entities.enumerations.Direction;
 import assets.entities.interfaces.BorderReactable;
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 import assets.util.Dimention;
 
 public final class Formation implements BorderReactable {
@@ -26,16 +26,16 @@ public final class Formation implements BorderReactable {
 	private void fill() {
 		for (int r = 1; r <= rows; r++) {
 			for (int c = 1; c <= columns; c++) {
-				units.add(new Invader(new Coordinates(r, c)));
+				units.add(new Invader(new Coordinate(r, c)));
 			}
 		}
 	}
 
 	public void setUnitSpacing(Dimention spriteDimentions) {
 		for (Invader invader : units) {
-			Coordinates indexInArray = invader.getPosition();
+			Coordinate indexInArray = invader.getPosition();
 			int xIndex = indexInArray.getX(), yIndex = indexInArray.getY();
-			invader.teleport(new Coordinates(xIndex * spriteDimentions.getWidth(), yIndex * spriteDimentions.getHeight()));
+			invader.teleport(new Coordinate(xIndex * spriteDimentions.getWidth(), yIndex * spriteDimentions.getHeight()));
 		}
 	}
 

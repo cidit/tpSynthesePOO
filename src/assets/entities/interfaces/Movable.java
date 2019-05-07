@@ -1,12 +1,12 @@
 package assets.entities.interfaces;
 
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 
 public interface Movable extends BorderReactable {
 
 	public void move();
 	
 	//developer tool
-	public void teleport(Coordinates newCoordonates);
+	public void teleport(Coordinate newCoordonates);
 	
 }

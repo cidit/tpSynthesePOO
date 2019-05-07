@@ -4,24 +4,24 @@ import assets.entities.enumerations.Allegiance;
 import assets.entities.enumerations.Direction;
 import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Movable;
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 import assets.util.Dimention;
 
 public abstract class Entity implements Movable {
 
-	protected Coordinates position;
+	protected Coordinate position;
 	protected Allegiance allegiance;
 	protected Status status;
 	private Direction direction;
 
-	public Entity(Coordinates position, Allegiance allegiance) {
+	public Entity(Coordinate position, Allegiance allegiance) {
 		this.position = position;
 		this.allegiance = allegiance;
 		status = Status.OPERATIONAL;
 		direction = Direction.NONE;
 	}
 
-	public Coordinates getPosition() {
+	public Coordinate getPosition() {
 		return position;
 	}
 
@@ -45,7 +45,7 @@ public abstract class Entity implements Movable {
 	public void move() {
 		int x = position.getX() + direction.getXVariation();
 		int y = position.getY() + direction.getYVariation();
-		position = new Coordinates(x, y);
+		position = new Coordinate(x, y);
 	}
 
 	@Override
@@ -59,11 +59,11 @@ public abstract class Entity implements Movable {
 			y = game.getHeight();
 		if (y < 0)
 			y = 0;
-		position = new Coordinates(x, y);
+		position = new Coordinate(x, y);
 	}
 	
 	@Override
-	public void teleport(Coordinates newCoords) {
+	public void teleport(Coordinate newCoords) {
 		position = newCoords;
 	}
 

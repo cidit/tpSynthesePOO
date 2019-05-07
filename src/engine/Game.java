@@ -9,7 +9,7 @@ import assets.entities.Formation;
 import assets.entities.Missile;
 import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Fireable;
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 import assets.util.Dimention;
 
 /**
@@ -37,7 +37,7 @@ public final class Game {
 		
 		entities = new ArrayList<Entity>();
 
-		player = new Canon(new Coordinates(width / 2, height / 10));
+		player = new Canon(new Coordinate(width / 2, height / 10));
 		invaders = new Formation(new Dimention(4, 3));
 		entities.add(player);
 	}

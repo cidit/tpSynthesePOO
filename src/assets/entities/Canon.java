@@ -3,11 +3,11 @@ package assets.entities;
 import assets.entities.enumerations.Allegiance;
 import assets.entities.enumerations.Direction;
 import assets.entities.interfaces.Fireable;
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 
 public final class Canon extends Entity implements Fireable {
 
-	public Canon(Coordinates position) {
+	public Canon(Coordinate position) {
 		super(position, Allegiance.FRIENDLY);
 		// TODO Auto-generated constructor stub
 	}

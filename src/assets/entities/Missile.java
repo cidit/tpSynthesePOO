@@ -2,12 +2,12 @@ package assets.entities;
 
 import assets.entities.enumerations.Allegiance;
 import assets.entities.enumerations.Status;
-import assets.util.Coordinates;
+import assets.util.Coordinate;
 import assets.util.Dimention;
 
 public final class Missile extends Entity {
 
-	public Missile(Coordinates position, Allegiance allegiance) {
+	public Missile(Coordinate position, Allegiance allegiance) {
 		super(position, allegiance);
 		// TODO Auto-generated constructor stub
 	}
