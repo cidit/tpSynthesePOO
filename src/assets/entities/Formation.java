@@ -25,9 +25,9 @@ public final class Formation implements BorderReactable {
 	}
 
 	private void fill() {
-		for (int r = 1; r <= rows; r++) {
-			for (int c = 1; c <= columns; c++) {
-				units.add(new Invader(new Coordinate(r, c)));
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < columns; c++) {
+				units.add(new Invader(new Coordinate(c, r)));
 			}
 		}
 	}
