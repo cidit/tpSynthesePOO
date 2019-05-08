@@ -37,7 +37,7 @@ public final class Game {
 		this.surface = surface;
 		over = false;
 		score = 0;
-		scoreboard = new Scoreboard("./scores.dat");
+		scoreboard = new Scoreboard("scores.dat");
 
 		final int w = surface.getWidth(), h = surface.getHeight();
 		final int canonX = w - (w / 2), canonY = h - (h / 10);
