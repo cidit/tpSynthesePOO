@@ -58,7 +58,7 @@ public final class Game {
 		removeDestroyedEntities();
 		moveEntities();
 		boundaryManager();
-		fireableFire();
+		fireablesFire();
 		player.updateFireRateTimer();
 		verifyPlayerStatus();
 		return entities;
@@ -79,7 +79,7 @@ public final class Game {
 			entity.borderReaction(surface);
 	}
 
-	private void fireableFire() {
+	private void fireablesFire() {
 		for (Entity entity : entities)
 			if (entity instanceof Fireable) {
 				Missile missile = ((Fireable) entity).fire();
