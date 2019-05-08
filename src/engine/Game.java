@@ -27,7 +27,6 @@ public final class Game {
 	private Dimention surface;
 	private boolean over;
 	private int score;
-	private Scoreboard scoreboard;
 
 	List<Entity> entities;
 	private Canon player;
@@ -37,7 +36,6 @@ public final class Game {
 		this.surface = surface;
 		over = false;
 		score = 0;
-		scoreboard = new Scoreboard("scores.dat");
 
 		final int w = surface.getWidth(), h = surface.getHeight();
 		final int canonX = w - (w / 2), canonY = h - (h / 10);
@@ -118,10 +116,6 @@ public final class Game {
 	}
 	
 	// ----- scores
-	
-	public Scoreboard getScoreboard() {
-		return scoreboard;
-	}
 	
 	public int getScore() {
 		return score;

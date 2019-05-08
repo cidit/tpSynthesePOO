@@ -23,9 +23,9 @@ public final class Scoreboard {
 	private List<Score> scores;
 	private final String savePath;
 
-	public Scoreboard(String savePath) {
+	public Scoreboard() {
 		scores = new ArrayList<Score>();
-		this.savePath = savePath;
+		this.savePath = "src/engine/scores.dat";
 
 		try (FileReader reader = new FileReader(savePath)) {
 			fillScoresArray(reader);
