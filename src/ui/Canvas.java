@@ -60,6 +60,8 @@ public class Canvas extends JPanel {
 					}
 					sprites.add(new Sprite(entity, img));
 				}
+				if(entities.isEmpty())
+					System.out.println("empty");
 				repaint();
 				if (game.isOver()) {
 					triggerEndGameScreen();
