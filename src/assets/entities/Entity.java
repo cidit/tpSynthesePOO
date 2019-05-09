@@ -78,4 +78,9 @@ public abstract class Entity implements Movable {
 		a.status = b.status = Status.DESTROYED;
 		return true;
 	}
+
+	/**
+	 * Optional method. Overwritten when an entity needs to do a specific action every turns.
+	 */
+	public void update() {}
 }
