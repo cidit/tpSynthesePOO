@@ -2,20 +2,23 @@ package assets.entities;
 
 import assets.entities.enumerations.Allegiance;
 import assets.entities.enumerations.Status;
-import assets.util.Coordinate;
-import assets.util.Dimention;
+import assets.util.Hitbox;
 
 public final class Missile extends Entity {
 
-	public Missile(Coordinate position, Allegiance allegiance) {
-		super(position, allegiance);
-		// TODO Auto-generated constructor stub
+	public Missile(Hitbox hitbox, Allegiance allegiance) {
+		super(hitbox, allegiance);
 	}
 
 	@Override
-	public void borderReaction(Dimention game) {
-		int x = position.getX(), y = position.getY();
-		if (x > game.getWidth() || x < 0 || y > game.getHeight() || y < 0)
+	public void rectify(Hitbox game) {
+		super.rectify(game);
+		final boolean ct, cr, cb, cl;
+		ct = hitbox.getSides().getTop() == game.getSides().getTop();
+		cr = hitbox.getSides().getRight() == game.getSides().getRight();
+		cb = hitbox.getSides().getBottom() == game.getSides().getBottom();
+		cl = hitbox.getSides().getLeft() == game.getSides().getLeft();
+		if (ct || cr || cb || cl)
 			status = Status.DESTROYED;
 	}
 }
