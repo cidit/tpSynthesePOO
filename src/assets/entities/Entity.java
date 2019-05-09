@@ -5,24 +5,24 @@ import assets.entities.enumerations.Direction;
 import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Movable;
 import assets.util.Coordinate;
-import assets.util.Dimention;
+import assets.util.Hitbox;
 
 public abstract class Entity implements Movable {
 
-	protected Coordinate position;
 	protected Allegiance allegiance;
 	protected Status status;
 	private Direction direction;
+	private Hitbox hitbox;
 
-	public Entity(Coordinate position, Allegiance allegiance) {
-		this.position = position;
+	public Entity(Hitbox hitbox, Allegiance allegiance) {
+		this.hitbox = hitbox;
 		this.allegiance = allegiance;
 		status = Status.OPERATIONAL;
 		direction = Direction.NONE;
 	}
 
-	public Coordinate getPosition() {
-		return position;
+	public Hitbox getHitbox() {
+		return hitbox;
 	}
 
 	public Allegiance getAllegiance() {
@@ -37,38 +37,45 @@ public abstract class Entity implements Movable {
 		return direction;
 	}
 
-	public void setDirection(Direction direction) {
+	public void changeDirection(Direction direction) {
 		this.direction = direction;
 	}
 
 	@Override
 	public void move() {
-		int x = position.getX() + direction.getXVariation();
-		int y = position.getY() + direction.getYVariation();
-		position = new Coordinate(x, y);
+		int x = hitbox.getCoordinate().getX() + direction.getXVariation();
+		int y = hitbox.getCoordinate().getY() + direction.getYVariation();
+		hitbox.moveTo(new Coordinate(x, y));
 	}
 
 	@Override
-	public void borderReaction(Dimention game) {
-		int x = position.getX(), y = position.getY();
-		if (x > game.getWidth())
-			x = game.getWidth();
-		if (x < 0)
-			x = 0;
-		if (y > game.getHeight())
-			y = game.getHeight();
-		if (y < 0)
-			y = 0;
-		position = new Coordinate(x, y);
+	public void rectify(Hitbox game) {
+		if(!game.contains(hitbox)) {
+			int x, y;
+			x = y = 0;
+			if (hitbox.getSides().getLeft() < game.getSides().getLeft())
+				x = game.getSides().getLeft();
+			if (hitbox.getSides().getRight() > game.getSides().getRight())
+				x = game.getSides().getRight() - hitbox.getDimention().getWidth();
+			if (hitbox.getSides().getTop() < game.getSides().getTop())
+				y = game.getSides().getTop();
+			if (hitbox.getSides().getBottom() > game.getSides().getBottom())
+				y = game.getSides().getBottom() - hitbox.getDimention().getHeight();
+			hitbox.moveTo(new Coordinate(x, y));
+		}
 	}
 	
 	@Override
-	public void teleport(Coordinate newCoords) {
-		position = newCoords;
+	public void teleport(Coordinate coordinate) {
+		hitbox.moveTo(coordinate);
 	}
 
-	public static void collide(Entity a, Entity b) {
-		if (a.allegiance != b.allegiance)
-			a.status = b.status = Status.DESTROYED;
+	public static boolean checkColision(Entity a, Entity b) {
+		if (a.allegiance == b.allegiance)
+			return false;
+		if (!a.hitbox.intersects(b.hitbox))
+			return false;
+		a.status = b.status = Status.DESTROYED;
+		return true;
 	}
 }
