@@ -2,12 +2,14 @@ package assets.entities;
 
 import assets.entities.enumerations.Allegiance;
 import assets.entities.enumerations.Status;
+import assets.util.Coordinate;
+import assets.util.DimentionProfiles;
 import assets.util.Hitbox;
 
 public final class Missile extends Entity {
 
-	public Missile(Hitbox hitbox, Allegiance allegiance) {
-		super(hitbox, allegiance);
+	public Missile(Coordinate coordinate, Allegiance allegiance) {
+		super(new Hitbox(coordinate, DimentionProfiles.getMissile()), allegiance);
 	}
 
 	@Override
