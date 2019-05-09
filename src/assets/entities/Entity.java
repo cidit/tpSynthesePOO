@@ -32,6 +32,10 @@ public abstract class Entity implements Movable {
 	public Status getStatus() {
 		return status;
 	}
+	
+	public void getDestroyed() {
+		status = Status.DESTROYED;
+	}
 
 	public Direction getDirection() {
 		return direction;
@@ -71,12 +75,7 @@ public abstract class Entity implements Movable {
 	}
 
 	public static boolean checkColision(Entity a, Entity b) {
-		if (a.allegiance == b.allegiance)
-			return false;
-		if (!a.hitbox.intersects(b.hitbox))
-			return false;
-		a.status = b.status = Status.DESTROYED;
-		return true;
+		return a.hitbox.intersects(b.hitbox);
 	}
 
 	/**
