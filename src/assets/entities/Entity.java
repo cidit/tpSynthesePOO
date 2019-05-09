@@ -50,19 +50,19 @@ public abstract class Entity implements Movable {
 
 	@Override
 	public void rectify(Hitbox game) {
-		if(!game.contains(hitbox)) {
-			int x, y;
-			x = y = 0;
-			if (hitbox.getSides().getLeft() < game.getSides().getLeft())
-				x = game.getSides().getLeft();
-			if (hitbox.getSides().getRight() > game.getSides().getRight())
-				x = game.getSides().getRight() - hitbox.getDimention().getWidth();
-			if (hitbox.getSides().getTop() < game.getSides().getTop())
-				y = game.getSides().getTop();
-			if (hitbox.getSides().getBottom() > game.getSides().getBottom())
-				y = game.getSides().getBottom() - hitbox.getDimention().getHeight();
-			hitbox.moveTo(new Coordinate(x, y));
-		}
+		int x, y;
+		x = y = 0;
+		if(game.contains(hitbox))
+			return;
+		if (hitbox.getSides().getLeft() < game.getSides().getLeft())
+			x = game.getSides().getLeft();
+		if (hitbox.getSides().getRight() > game.getSides().getRight())
+			x = game.getSides().getRight() - hitbox.getDimention().getWidth();
+		if (hitbox.getSides().getTop() < game.getSides().getTop())
+			y = game.getSides().getTop();
+		if (hitbox.getSides().getBottom() > game.getSides().getBottom())
+			y = game.getSides().getBottom() - hitbox.getDimention().getHeight();
+		hitbox.moveTo(new Coordinate(x, y));
 	}
 	
 	@Override
