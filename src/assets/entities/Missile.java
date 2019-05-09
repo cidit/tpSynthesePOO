@@ -13,8 +13,8 @@ public final class Missile extends Entity {
 	}
 
 	@Override
-	public void rectify(Hitbox game) {
-		super.rectify(game);
+	public void reactToBorder(Hitbox game) {
+		super.reactToBorder(game);
 		final boolean ct, cr, cb, cl;
 		ct = hitbox.getSides().getTop() == game.getSides().getTop();
 		cr = hitbox.getSides().getRight() == game.getSides().getRight();

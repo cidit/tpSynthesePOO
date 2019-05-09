@@ -40,7 +40,7 @@ public final class Formation implements BorderReactable {
 	}
 
 	@Override
-	public void rectify(Hitbox game) {
+	public void reactToBorder(Hitbox game) {
 		for (Invader invader : units) {
 			Hitbox hitbox = invader.getHitbox();
 			if (direction == Direction.DOWN) {

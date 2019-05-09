@@ -49,7 +49,7 @@ public abstract class Entity implements Movable {
 	}
 
 	@Override
-	public void rectify(Hitbox game) {
+	public void reactToBorder(Hitbox game) {
 		int x, y;
 		x = y = 0;
 		if(game.contains(hitbox))
