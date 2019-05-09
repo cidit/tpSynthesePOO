@@ -14,17 +14,13 @@ import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Fireable;
 import assets.util.Coordinate;
 import assets.util.Dimention;
+import assets.util.DimentionProfiles;
+import assets.util.Hitbox;
 
-/**
- * manages every entities and the progression of the game TODO CLEAN MAGIC
- * NUMBERS
- * 
- * @author cidit
- *
- */
 public final class Game {
 
-	private Dimention surface;
+	private static final int HALF = 2, TENTH = 10;
+	private Hitbox surface;
 	private boolean over;
 	private int score;
 
@@ -32,38 +28,41 @@ public final class Game {
 	private Canon player;
 	private Formation invasion;
 
-	public Game(Dimention surface, Dimention unitOffset, Dimention invasionStrategy) {
-		this.surface = surface;
+	public Game(Dimention dimention, Dimention invasionStrategy) {
+		surface = new Hitbox(new Coordinate(0, 0), dimention);
 		over = false;
 		score = 0;
 
-		final int w = surface.getWidth(), h = surface.getHeight();
-		final int canonX = w - (w / 2), canonY = h - (h / 10);
-		player = new Canon(new Coordinate(canonX, canonY));
+		final int x, y;
+		x = dimention.getWidth() / HALF - DimentionProfiles.getCanon().getWidth() / HALF;
+		y = dimention.getHeight() / TENTH;
 
+		player = new Canon(new Coordinate(x, y));
 		invasion = new Formation(invasionStrategy);
-		invasion.setUnitSpacing(unitOffset);
 
 		entities = new ArrayList<Entity>();
 		entities.add(player);
 		entities.addAll(invasion.getUnits());
-
 	}
 
-	// ----- updates
-
 	public List<Entity> nextUpdate() {
-		removeDestroyedEntities();
+		updateEntities();
 		moveEntities();
-		boundaryManager();
+		boundaryManagement();
 		fireablesFire();
-		player.updateFireRateTimer();
+		updateScore();
+		destroyEntities();
+		removeDestroyedEntities();
 		verifyPlayerStatus();
 		return entities;
 	}
 
-	private void removeDestroyedEntities() {
-		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
+	// ----- actions
+
+	private void updateEntities() {
+		for (Entity entity : entities) {
+			entity.update();
+		}
 	}
 
 	private void moveEntities() {
@@ -71,10 +70,10 @@ public final class Game {
 			entity.move();
 	}
 
-	private void boundaryManager() {
-		invasion.borderReaction(surface);
+	private void boundaryManagement() {
+		invasion.reactToBorder(surface);
 		for (Entity entity : entities)
-			entity.borderReaction(surface);
+			entity.reactToBorder(surface);
 	}
 
 	private void fireablesFire() {
@@ -86,44 +85,61 @@ public final class Game {
 			}
 	}
 
+	private void updateScore() {
+		boolean c1, c2;
+		for (Entity a : entities) {
+			for (Entity b : entities) {
+				if (Entity.checkColision(a, b)) {
+					c1 = a instanceof Invader && b instanceof Missile && b.getAllegiance() == Allegiance.FRIENDLY;
+					c2 = b instanceof Invader && a instanceof Missile && a.getAllegiance() == Allegiance.FRIENDLY;
+					if (c1 || c2) {
+						score++;
+					}
+				}
+			}
+		}
+	}
+
+	private void destroyEntities() {
+		for (Entity a : entities) {
+			for (Entity b : entities) {
+				if (Entity.checkColision(a, b) && a.getAllegiance() != b.getAllegiance()) {
+					a.getDestroyed();
+					b.getDestroyed();
+				}
+			}
+		}
+	}
+
+	private void removeDestroyedEntities() {
+		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
+	}
+
 	private void verifyPlayerStatus() {
-		over = player.getStatus() == Status.DESTROYED ? true : false;
+		over = player.getStatus() == Status.DESTROYED;
 	}
 
 	// ----- player movement
 
 	public void playerGoesRight() {
-		player.setDirection(Direction.RIGHT);
+		player.changeDirection(Direction.RIGHT);
 	}
 
 	public void playerGoesLeft() {
-		player.setDirection(Direction.LEFT);
+		player.changeDirection(Direction.LEFT);
 	}
 
 	public void playerGoesNowhere() {
-		player.setDirection(Direction.NONE);
-	}
-
-	// ----- collision
-
-	public void collide(Entity a, Entity b) {
-		boolean c1 = a instanceof Invader && b instanceof Missile && b.getAllegiance() == Allegiance.FRIENDLY;
-		boolean c2 = b instanceof Invader && a instanceof Missile && a.getAllegiance() == Allegiance.FRIENDLY;
-		if (c1 || c2) {
-			score++;
-		}
-		Entity.collide(a, b);
-	}
-	
-	// ----- scores
-	
-	public int getScore() {
-		return score;
+		player.changeDirection(Direction.NONE);
 	}
 
 	// ----- checkers
 
 	public boolean isOver() {
 		return over;
+	}
+
+	public int getScore() {
+		return score;
 	}
 }
