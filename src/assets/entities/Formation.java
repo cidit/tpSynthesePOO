@@ -6,7 +6,7 @@ import java.util.List;
 import assets.entities.enumerations.Direction;
 import assets.entities.interfaces.BorderReactable;
 import assets.util.Coordinate;
-import assets.util.Dimention;
+import assets.util.Dimension;
 import assets.util.DimentionProfiles;
 import assets.util.Hitbox;
 
@@ -17,7 +17,7 @@ public final class Formation implements BorderReactable {
 	private List<Invader> units;
 	private Direction direction;
 
-	public Formation(Dimention dimention) {
+	public Formation(Dimension dimention) {
 		columns = dimention.getWidth();
 		rows = dimention.getHeight();
 		direction = Direction.RIGHT;
@@ -27,7 +27,7 @@ public final class Formation implements BorderReactable {
 	}
 
 	private void fill() {
-		Dimention dimention = DimentionProfiles.getInvader();
+		Dimension dimention = DimentionProfiles.getInvader();
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				units.add(new Invader(new Coordinate(c * dimention.getWidth(), r * dimention.getHeight())));

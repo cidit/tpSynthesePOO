@@ -3,7 +3,7 @@ package assets.util;
 public class Hitbox {
 
 	private Coordinate coordinate;
-	private Dimention dimention;
+	private Dimension dimention;
 	private Sides sides;
 
 	/**
@@ -11,7 +11,7 @@ public class Hitbox {
 	 * @param coordinate superior left corner
 	 * @param dimention
 	 */
-	public Hitbox(Coordinate coordinate, Dimention dimention) {
+	public Hitbox(Coordinate coordinate, Dimension dimention) {
 		this.coordinate = coordinate;
 		this.dimention = dimention;
 		initSides();
@@ -25,7 +25,7 @@ public class Hitbox {
 		return coordinate;
 	}
 	
-	public Dimention getDimention() {
+	public Dimension getDimention() {
 		return dimention;
 	}
 	
@@ -38,7 +38,7 @@ public class Hitbox {
 		initSides();
 	}
 	
-	public void resize(Dimention dimention) {
+	public void resize(Dimension dimention) {
 		this.dimention = dimention;
 		initSides();
 	}

@@ -6,12 +6,12 @@ package assets.util;
  * @author cid
  *
  */
-public class Dimention {
+public class Dimension {
 
 	private int width;
 	private int height;
 
-	public Dimention(int width, int height) {
+	public Dimension(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}

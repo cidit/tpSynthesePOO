@@ -2,19 +2,19 @@ package assets.util;
 
 public class DimentionProfiles {
 
-	private static Dimention canonDimention;
-	private static Dimention invaderDimention;
-	private static Dimention missileDimention;
+	private static Dimension canonDimention;
+	private static Dimension invaderDimention;
+	private static Dimension missileDimention;
 	private static boolean initialised = false;
 
-	public static void setProfiles(Dimention canon, Dimention invader, Dimention missile) {
+	public static void setProfiles(Dimension canon, Dimension invader, Dimension missile) {
 		canonDimention = canon;
 		invaderDimention = invader;
 		missileDimention = missile;
 		initialised = true;
 	}
 	
-	public static Dimention getCanon() {
+	public static Dimension getCanon() {
 		if (!initialised) {
 			System.out.println("DIMENTION PROFILES UNINITIALISED");
 			return null;
@@ -22,7 +22,7 @@ public class DimentionProfiles {
 		return canonDimention;
 	}
 
-	public static Dimention getInvader() {
+	public static Dimension getInvader() {
 		if (!initialised) {
 			System.out.println("DIMENTION PROFILES UNINITIALISED");
 			return null;
@@ -30,7 +30,7 @@ public class DimentionProfiles {
 		return invaderDimention;
 	}
 
-	public static Dimention getMissile() {
+	public static Dimension getMissile() {
 		if (!initialised) {
 			System.out.println("DIMENTION PROFILES UNINITIALISED");
 			return null;

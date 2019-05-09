@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import assets.entities.Entity;
-import assets.util.Dimention;
+import assets.util.Dimension;
 import engine.Game;
 import engine.Scoreboard;
 
@@ -31,7 +31,7 @@ public class Canvas extends JPanel {
 	private static final int DELAY, INTERVAL = DELAY = 16;
 	
 	private final Dimension swingDimention;
-	private final Dimention utilDimention;
+	private final Dimension utilDimention;
 	
 	private BufferedImage canon, invader, missile;
 	private Timer timer;
@@ -40,19 +40,18 @@ public class Canvas extends JPanel {
 	private Game game;
 	private List<Sprite> sprites;
 
-	public Canvas(Dimension d) {
+	public Canvas() {
 		swingDimention = d;
-		utilDimention = new Dimention((int) d.getHeight(), (int) d.getWidth());
+		utilDimention = new Dimension((int) d.getHeight(), (int) d.getWidth());
 		setBackground(Color.BLACK);
 		setPreferredSize(swingDimention);
 		
 		loadImages();
-		Dimention invadersDimention = new Dimention(invader.getWidth(), invader.getHeight());
 		timer = new Timer();
 		
 		scoreboard = new Scoreboard();
 		// TODO add proper unit offset
-		game = new Game(utilDimention, invadersDimention, new Dimention(COLUMNS, ROWS));
+		game = new Game(utilDimention, new Dimension(COLUMNS, ROWS));
 		
 		sprites = new ArrayList<Sprite>();
 	}

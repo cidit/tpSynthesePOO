@@ -13,7 +13,7 @@ import assets.entities.enumerations.Direction;
 import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Fireable;
 import assets.util.Coordinate;
-import assets.util.Dimention;
+import assets.util.Dimension;
 import assets.util.DimentionProfiles;
 import assets.util.Hitbox;
 
@@ -28,7 +28,7 @@ public final class Game {
 	private Canon player;
 	private Formation invasion;
 
-	public Game(Dimention dimention, Dimention invasionStrategy) {
+	public Game(Dimension dimention, Dimension invasionStrategy) {
 		surface = new Hitbox(new Coordinate(0, 0), dimention);
 		over = false;
 		score = 0;
