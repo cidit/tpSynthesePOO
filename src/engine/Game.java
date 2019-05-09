@@ -19,7 +19,7 @@ import assets.util.Hitbox;
 
 public final class Game {
 
-	private static final int HALF = 2, TENTH = 10;
+	private static final int HALF = 2, EIGHT = 10;
 	private Hitbox surface;
 	private boolean over;
 	private int score;
@@ -35,7 +35,7 @@ public final class Game {
 
 		final int x, y;
 		x = dimention.getWidth() / HALF - DimentionProfiles.getCanon().getWidth() / HALF;
-		y = dimention.getHeight() / TENTH;
+		y = dimention.getHeight() - (dimention.getHeight() / EIGHT);
 
 		player = new Canon(new Coordinate(x, y));
 		invasion = new Formation(invasionStrategy);
@@ -49,10 +49,10 @@ public final class Game {
 		updateEntities();
 		moveEntities();
 		boundaryManagement();
-		fireablesFire();
+//		fireablesFire();
 		updateScore();
-		destroyEntities();
-		removeDestroyedEntities();
+//		destroyEntities(); 
+		removeDestroyedEntities(); 
 		verifyPlayerStatus();
 		return entities;
 	}
@@ -116,7 +116,7 @@ public final class Game {
 	}
 
 	private void verifyPlayerStatus() {
-//		over = player.getStatus() == Status.DESTROYED;
+		over = player.getStatus() == Status.DESTROYED;
 	}
 
 	// ----- player movement
