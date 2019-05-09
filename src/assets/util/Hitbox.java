@@ -4,16 +4,7 @@ public class Hitbox {
 
 	private Coordinate coordinate;
 	private Dimention dimention;
-
-	private int left;
-	private int right;
-	private int top;
-	private int bottom;
-
-	private Coordinate superiorLeft;
-	private Coordinate superiorRight;
-	private Coordinate inferiorLeft;
-	private Coordinate inferiorRight;
+	private Sides sides;
 
 	/**
 	 * 
@@ -24,23 +15,12 @@ public class Hitbox {
 		this.coordinate = coordinate;
 		this.dimention = dimention;
 		initSides();
-		initCorners();
-	}
-
-	private void initSides() {
-		left = coordinate.getX();
-		right = left + dimention.getWidth();
-		top = coordinate.getY();
-		bottom = top + dimention.getHeight();
-	}
-
-	private void initCorners() {
-		superiorLeft = new Coordinate(left, top);
-		superiorRight = new Coordinate(right, top);
-		inferiorLeft = new Coordinate(left, bottom);
-		inferiorRight = new Coordinate(right, bottom);
 	}
 	
+	private void initSides() {
+		sides = new Sides();
+	}
+
 	public Coordinate getCoordinate() {
 		return coordinate;
 	}
@@ -49,15 +29,72 @@ public class Hitbox {
 		return dimention;
 	}
 	
-	public static boolean intersect(Hitbox hitbox1, Hitbox hitbox2) {
-		// TODO
-		
+	public Sides getSides() {
+		return sides;
+	}
+	
+	public void moveTo(Coordinate coordinate) {
+		this.coordinate = coordinate;
+		initSides();
+	}
+	
+	public void resize(Dimention dimention) {
+		this.dimention = dimention;
+		initSides();
+	}
+	
+	public boolean intersects(Hitbox other) {
+		final boolean ct, cr, cb, cl;
+		final Sides os = other.sides;
+		ct = sides.top >= os.top && sides.top <= os.bottom;
+		cr = sides.right <= os.right && sides.right >= os.left;
+		cb = sides.bottom >= os.top && sides.bottom <= os.bottom;
+		cl = sides.left <= os.right && sides.left >= os.left;
+		if (ct || cr || cb || cl)
+			return true;
 		return false;
 	}
 	
-	public static boolean contains(Hitbox parent, Hitbox child) {
-		// TODO
-		
+	public boolean contains(Hitbox other) {
+		final boolean ct, cr, cb, cl;
+		final Sides os = other.sides;
+		ct = sides.top <= os.top;
+		cr = sides.right >= os.right;
+		cb = sides.bottom >= os.bottom;
+		cl = sides.left <= os.left;
+		if (ct && cr && cb && cl)
+			return true;
 		return false;
+	}
+	
+	public class Sides {
+		
+		private int left;
+		private int right;
+		private int top;
+		private int bottom;
+		
+		public Sides() {
+			left = coordinate.getX();
+			right = left + dimention.getWidth();
+			top = coordinate.getY();
+			bottom = top + dimention.getHeight();
+		}
+		
+		public int getLeft() {
+			return left;
+		}
+		
+		public int getRight() {
+			return right;
+		}
+		
+		public int getTop() {
+			return top;
+		}
+		
+		public int getBottom() {
+			return bottom;
+		}
 	}
 }
