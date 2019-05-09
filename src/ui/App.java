@@ -12,6 +12,7 @@ public final class App extends JFrame {
 	 */
 	private static final long serialVersionUID = 2073528678702365030L;
 	
+	//this Dimention is from swing
 	private static Dimension APP_SIZE = new Dimension((int) 1536, (int) 1000);
 
 	public App() {
@@ -24,7 +25,8 @@ public final class App extends JFrame {
 		pack();
 		setVisible(true);
 		game.run();
-		
+		setVisible(false);
+		dispose();
 	}
 	
 }
