@@ -65,9 +65,10 @@ public class Canvas extends JPanel {
 					triggerEndGameScreen();
 					timer.cancel();
 				}
+				System.out.println("test");
 			}
 			
-		}, 0, Settings.FRAMERATE_MILLIS);
+		}, 10, Settings.FRAMERATE_MILLIS);
 	}
 	
 	protected void triggerEndGameScreen() {
@@ -78,9 +79,8 @@ public class Canvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(!game.isOver())
-			drawSprites(g);
-		else;
+		System.out.println("draw");
+		drawSprites(g);
 	}
 
 	private void drawSprites(Graphics g) {

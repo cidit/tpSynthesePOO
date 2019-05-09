@@ -116,7 +116,7 @@ public final class Game {
 	}
 
 	private void verifyPlayerStatus() {
-		over = player.getStatus() == Status.DESTROYED;
+//		over = player.getStatus() == Status.DESTROYED;
 	}
 
 	// ----- player movement
