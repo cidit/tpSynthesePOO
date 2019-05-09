@@ -13,12 +13,12 @@ import assets.util.DimentionProfiles;
 
 public class Settings {
 
-	{
-		assets.util.Dimension canon = new assets.util.Dimension(150, 150);
-		assets.util.Dimension invader = new assets.util.Dimension(100, 100);
-		assets.util.Dimension missile = new assets.util.Dimension(16, 80);
-		assets.util.DimentionProfiles.setProfiles(canon, invader, missile);
-	}
+//	static {
+//		assets.util.Dimension canon = new assets.util.Dimension(150, 150);
+//		assets.util.Dimension invader = new assets.util.Dimension(100, 100);
+//		assets.util.Dimension missile = new assets.util.Dimension(16, 80);
+//		assets.util.DimentionProfiles.setProfiles(canon, invader, missile);
+//	}
 	
 	public static final java.awt.Dimension APP_SIZE = new java.awt.Dimension(1536, 1000);
 	public static final assets.util.Dimension GAME_SIZE = new assets.util.Dimension(APP_SIZE.width, APP_SIZE.height);

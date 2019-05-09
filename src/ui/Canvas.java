@@ -36,16 +36,17 @@ public class Canvas extends JPanel {
 		scoreboard = new Scoreboard();
 		timer = new Timer();		
 		game = new Game(Settings.GAME_SIZE, Settings.INVASION_STRATEGY);
+		sprites = new ArrayList<Sprite>();
 		
 	}
 
-	public void run() {
+	public void begin() {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			
 			@Override
 			public void run() {
 				List<Entity> entities = game.nextUpdate();
-				sprites = new ArrayList<Sprite>();
+				sprites.clear();
 				for (Entity entity : entities) {
 					BufferedImage img;
 					switch (entity.getClass().getSimpleName()) {

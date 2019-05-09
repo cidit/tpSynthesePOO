@@ -20,9 +20,9 @@ public final class App extends JFrame {
 		setResizable(false);
 		pack();
 		setVisible(true);
-		game.run();
-		setVisible(false);
-		dispose();
+//		game.run();
+//		setVisible(false);
+//		dispose();
 	}
 	
 }

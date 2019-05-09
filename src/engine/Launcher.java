@@ -7,6 +7,8 @@ import ui.App;
 public class Launcher {
 	
 	public static void main(String[] args) {
+		
+//		Settings.initSettings();
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
