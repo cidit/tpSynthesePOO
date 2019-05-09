@@ -11,8 +11,8 @@ public abstract class Entity implements Movable {
 
 	protected Allegiance allegiance;
 	protected Status status;
-	private Direction direction;
-	private Hitbox hitbox;
+	protected Direction direction;
+	protected Hitbox hitbox;
 
 	public Entity(Hitbox hitbox, Allegiance allegiance) {
 		this.hitbox = hitbox;
