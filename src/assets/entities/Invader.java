@@ -26,7 +26,7 @@ public final class Invader extends Entity implements Fireable {
 			int y = hitbox.getSides().getBottom();
 			
 			Coordinate coordinate = new Coordinate(x, y);
-			Missile missile = new Missile(new Hitbox(coordinate, DimentionProfiles.getMissile()), allegiance);
+			Missile missile = new Missile(coordinate, allegiance);
 			missile.changeDirection(Direction.DOWN);
 			return missile;
 		}
