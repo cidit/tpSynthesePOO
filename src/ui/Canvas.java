@@ -3,19 +3,18 @@ package ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import assets.entities.Canon;
 import assets.entities.Entity;
 import assets.util.Dimention;
 import engine.Game;
@@ -29,11 +28,13 @@ public class Canvas extends JPanel {
 	private static final long serialVersionUID = 7949282581176873115L;
 	private static final int COLUMNS = 4;
 	private static final int ROWS = 3;
+	private static final int DELAY, INTERVAL = DELAY = 16;
 	
 	private final Dimension swingDimention;
 	private final Dimention utilDimention;
 	
 	private BufferedImage canon, invader, missile;
+	private Timer timer;
 
 	private Scoreboard scoreboard;
 	private Game game;
@@ -47,6 +48,7 @@ public class Canvas extends JPanel {
 		
 		loadImages();
 		Dimention invadersDimention = new Dimention(invader.getWidth(), invader.getHeight());
+		timer = new Timer();
 		
 		scoreboard = new Scoreboard();
 		// TODO add proper unit offset
@@ -68,27 +70,39 @@ public class Canvas extends JPanel {
 	}
 
 	public void run() {
-		List<Entity> entities = game.nextUpdate();
-		for (Entity entity : entities) {
-			BufferedImage img;
-			switch (entity.getClass().getSimpleName()) {
-			case "Canon":
-				img = canon;
-				break;
-			case "Invader":
-				img = invader;
-				break;
-			case "Missile":
-				img = missile;
-				break;
-			default:
-				img = null;
+		timer.scheduleAtFixedRate(new TimerTask() {
+			
+			@Override
+			public void run() {
+				List<Entity> entities = game.nextUpdate();
+				for (Entity entity : entities) {
+					BufferedImage img;
+					switch (entity.getClass().getSimpleName()) {
+					case "Canon":
+						img = canon;
+						break;
+					case "Invader":
+						img = invader;
+						break;
+					case "Missile":
+						img = missile;
+						break;
+					default:
+						img = null;
+					}
+					Sprite sprite = new Sprite(entity, img);
+					sprites.add(sprite);
+				}
+				for (Sprite s1 : sprites) {
+					for (Sprite s2 : sprites) {
+						Rectangle r1 = s1.getBounds(), r2 = s2.getBounds();
+						if (r1.intersects(r2))
+							game.collide(s1.getEntity(), s2.getEntity());
+					}
+				}
+				repaint();				
 			}
-			Sprite sprite = new Sprite(entity, img);
-			sprites.add(sprite);
-		}
-		
-		repaint();
+		}, DELAY, INTERVAL);
 	}
 	
 	@Override

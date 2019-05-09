@@ -21,16 +21,23 @@ public final class Sprite {
 
 	private Dimension dimention;
 	private Coordinate position;
+
+	private Entity e;
 	
 	public Sprite(Entity e, BufferedImage img) {
 		// TODO Auto-generated constructor stub
 		this.img = img;
+		this.e = e;
 		dimention = new Dimension(img.getWidth(), img.getHeight());
 		position = e.getPosition();
 	}
 	
 	public BufferedImage getImage() {
 		return img;
+	}
+	
+	public Entity getEntity() {
+		return e;
 	}
 	
 	public Rectangle getBounds() {
