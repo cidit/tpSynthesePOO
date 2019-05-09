@@ -1,9 +1,9 @@
 package assets.entities.interfaces;
 
-import assets.util.Dimention;
+import assets.util.Hitbox;
 
 public interface BorderReactable {
 
-	public void borderReaction(Dimention game);
+	public void rectify(Hitbox hitbox);
 	
 }
