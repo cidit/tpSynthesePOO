@@ -18,18 +18,12 @@ public final class Sprite {
 	private static final long serialVersionUID = -8219829209329828716L;
 	
 	private BufferedImage img;
-
-	private Dimension dimention;
-	private Coordinate position;
-
 	private Entity e;
 	
 	public Sprite(Entity e, BufferedImage img) {
 		// TODO Auto-generated constructor stub
 		this.img = img;
 		this.e = e;
-		dimention = new Dimension(img.getWidth(), img.getHeight());
-		position = e.getPosition();
 	}
 	
 	public BufferedImage getImage() {
@@ -38,9 +32,5 @@ public final class Sprite {
 	
 	public Entity getEntity() {
 		return e;
-	}
-	
-	public Rectangle getBounds() {
-		return new Rectangle(position.getX(), position.getY(), dimention.width, dimention.height);
 	}
 }

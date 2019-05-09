@@ -1,24 +1,21 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import assets.entities.Entity;
-import assets.util.Dimension;
+import assets.util.Coordinate;
 import engine.Game;
 import engine.Scoreboard;
+import engine.Settings;
 
 public class Canvas extends JPanel {
 
@@ -26,46 +23,20 @@ public class Canvas extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7949282581176873115L;
-	private static final int COLUMNS = 4;
-	private static final int ROWS = 3;
-	private static final int DELAY, INTERVAL = DELAY = 16;
 	
-	private final Dimension swingDimention;
-	private final Dimension utilDimention;
-	
-	private BufferedImage canon, invader, missile;
-	private Timer timer;
-
 	private Scoreboard scoreboard;
+	private Timer timer;
 	private Game game;
 	private List<Sprite> sprites;
 
 	public Canvas() {
-		swingDimention = d;
-		utilDimention = new Dimension((int) d.getHeight(), (int) d.getWidth());
 		setBackground(Color.BLACK);
-		setPreferredSize(swingDimention);
-		
-		loadImages();
-		timer = new Timer();
+		setPreferredSize(Settings.APP_SIZE);
 		
 		scoreboard = new Scoreboard();
-		// TODO add proper unit offset
-		game = new Game(utilDimention, new Dimension(COLUMNS, ROWS));
+		timer = new Timer();		
+		game = new Game(Settings.GAME_SIZE, Settings.INVASION_STRATEGY);
 		
-		sprites = new ArrayList<Sprite>();
-	}
-	
-	private void loadImages() {
-		String imagePath = "src/sprites/";
-		try {
-			canon = ImageIO.read(new File(imagePath + "canon.png"));
-			invader = ImageIO.read(new File(imagePath + "monstre1_1.png"));
-			missile = ImageIO.read(new File(imagePath + "missile.png"));
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void run() {
@@ -74,45 +45,47 @@ public class Canvas extends JPanel {
 			@Override
 			public void run() {
 				List<Entity> entities = game.nextUpdate();
+				sprites = new ArrayList<Sprite>();
 				for (Entity entity : entities) {
 					BufferedImage img;
 					switch (entity.getClass().getSimpleName()) {
 					case "Canon":
-						img = canon;
-						break;
-					case "Invader":
-						img = invader;
+						img = Settings.IMG_CANON;
 						break;
 					case "Missile":
-						img = missile;
-						break;
+						img = Settings.IMG_MISSILE;
 					default:
-						img = null;
+						img = Settings.IMG_UFO;
 					}
-					Sprite sprite = new Sprite(entity, img);
-					sprites.add(sprite);
+					sprites.add(new Sprite(entity, img));
 				}
-				for (Sprite s1 : sprites) {
-					for (Sprite s2 : sprites) {
-						Rectangle r1 = s1.getBounds(), r2 = s2.getBounds();
-						if (r1.intersects(r2))
-							game.collide(s1.getEntity(), s2.getEntity());
-					}
+				repaint();
+				if (game.isOver()) {
+					triggerEndGameScreen();
+					timer.cancel();
 				}
-				repaint();				
 			}
-		}, DELAY, INTERVAL);
+			
+		}, 0, Settings.FRAMERATE_MILLIS);
 	}
 	
+	protected void triggerEndGameScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawSprites(g);
+		if(!game.isOver())
+			drawSprites(g);
+		else;
 	}
 
 	private void drawSprites(Graphics g) {
 		for (Sprite sprite : sprites) {
-			g.drawImage(sprite.getImage(), sprite.getBounds().x, sprite.getBounds().y, this);
+			Coordinate coordinate = sprite.getEntity().getHitbox().getCoordinate();
+			g.drawImage(sprite.getImage(), coordinate.getX(), coordinate.getY(), this);
 		}
 		Toolkit.getDefaultToolkit().sync();
 	}
