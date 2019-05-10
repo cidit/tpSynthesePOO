@@ -14,7 +14,6 @@ import assets.entities.enumerations.Status;
 import assets.entities.interfaces.Fireable;
 import assets.util.Coordinate;
 import assets.util.Dimension;
-import assets.util.DimentionProfiles;
 import assets.util.Hitbox;
 
 public final class Game {
@@ -34,7 +33,7 @@ public final class Game {
 		score = 0;
 
 		final int x, y;
-		x = dimention.getWidth() / HALF - DimentionProfiles.getCanon().getWidth() / HALF;
+		x = dimention.getWidth() / HALF - DimensionProfiles.CANON.get().getWidth() / HALF;
 		y = dimention.getHeight() - (dimention.getHeight() / EIGHT);
 
 		player = new Canon(new Coordinate(x, y));

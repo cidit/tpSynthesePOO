@@ -7,8 +7,8 @@ import assets.entities.enumerations.Direction;
 import assets.entities.interfaces.BorderReactable;
 import assets.util.Coordinate;
 import assets.util.Dimension;
-import assets.util.DimentionProfiles;
 import assets.util.Hitbox;
+import engine.DimensionProfiles;
 
 public final class Formation implements BorderReactable {
 
@@ -27,7 +27,7 @@ public final class Formation implements BorderReactable {
 	}
 
 	private void fill() {
-		Dimension dimention = DimentionProfiles.getInvader();
+		Dimension dimention = DimensionProfiles.INVADER.get();
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				units.add(new Invader(new Coordinate(c * dimention.getWidth(), r * dimention.getHeight())));

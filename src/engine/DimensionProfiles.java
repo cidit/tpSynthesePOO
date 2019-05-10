@@ -1,6 +1,8 @@
-package assets.util;
+package engine;
 
-public enum DimentionProfiles {
+import assets.util.Dimension;
+
+public enum DimensionProfiles {
 
 
 	CANON(new Dimension(150, 150)),
@@ -9,7 +11,7 @@ public enum DimentionProfiles {
 	
 	private Dimension dimension;
 
-	private DimentionProfiles(Dimension dimension) {
+	private DimensionProfiles(Dimension dimension) {
 		this.dimension = dimension;
 	}
 	
