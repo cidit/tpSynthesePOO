@@ -1,49 +1,20 @@
 package assets.util;
 
-public class DimentionProfiles {
+public enum DimentionProfiles {
 
-//	private static Dimension canonDimention;
-//	private static Dimension invaderDimention;
-//	private static Dimension missileDimention;
-//	private static boolean initialised = false;
-	private static Dimension canonDimention = new assets.util.Dimension(150, 150);
-	private static Dimension invaderDimention = new assets.util.Dimension(100, 100);
-	private static Dimension missileDimention = new assets.util.Dimension(16, 80);
 
-	public static void setProfiles(Dimension canon, Dimension invader, Dimension missile) {
-		System.out.println("initializing profiles");
-		canonDimention = canon;
-		invaderDimention = invader;
-		missileDimention = missile;
-//		initialised = true;
+	CANON(new Dimension(150, 150)),
+	INVADER(new Dimension(100, 100)),
+	MISSILE(new Dimension(16, 80));
+	
+	private Dimension dimension;
+
+	private DimentionProfiles(Dimension dimension) {
+		this.dimension = dimension;
 	}
 	
-	public static Dimension getCanon() {
-//		if (!initialised) {
-//			System.out.println("DIMENTION PROFILES UNINITIALISED");
-//			return null;
-//		}
-		return canonDimention;
+	public Dimension get() {
+		return dimension;
 	}
-
-	public static Dimension getInvader() {
-//		if (!initialised) {
-//			System.out.println("DIMENTION PROFILES UNINITIALISED");
-//			return null;
-//		}
-		return invaderDimention;
-	}
-
-	public static Dimension getMissile() {
-//		if (!initialised) {
-//			System.out.println("DIMENTION PROFILES UNINITIALISED");
-//			return null;
-//		}
-		return missileDimention;
-	}
-	
-//	public static boolean isInitialised() {
-//		return initialised;
-//	}
 
 }
