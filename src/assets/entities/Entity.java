@@ -60,13 +60,13 @@ public abstract class Entity implements Movable {
 		x = y = 0;
 		if(game.contains(hitbox))
 			return;
-		if (hitbox.getSides().getLeft() < game.getSides().getLeft())
+		if (hitbox.getSides().getLeft() <= game.getSides().getLeft())
 			x = game.getSides().getLeft();
-		if (hitbox.getSides().getRight() > game.getSides().getRight())
+		if (hitbox.getSides().getRight() >= game.getSides().getRight())
 			x = game.getSides().getRight() - hitbox.getDimention().getWidth();
-		if (hitbox.getSides().getTop() < game.getSides().getTop())
+		if (hitbox.getSides().getTop() <= game.getSides().getTop())
 			y = game.getSides().getTop();
-		if (hitbox.getSides().getBottom() > game.getSides().getBottom())
+		if (hitbox.getSides().getBottom() >= game.getSides().getBottom())
 			y = game.getSides().getBottom() - hitbox.getDimention().getHeight();
 		hitbox.moveTo(new Coordinate(x, y));
 	}
