@@ -44,15 +44,17 @@ public class Hitbox {
 	}
 	
 	public boolean intersects(Hitbox other) {
-		final boolean ct, cr, cb, cl;
+		final boolean ct, cr, cb, cl, ctr, ctl, cbr, cbl;
 		final Sides os = other.sides;
 		ct = sides.top >= os.top && sides.top <= os.bottom;
 		cr = sides.right <= os.right && sides.right >= os.left;
 		cb = sides.bottom >= os.top && sides.bottom <= os.bottom;
 		cl = sides.left <= os.right && sides.left >= os.left;
-		if (ct || cr || cb || cl)
-			return true;
-		return false;
+		ctr = ct && cr;
+		ctl = ct && cl;
+		cbr = cb && cr;
+		cbl = cb && cl;
+		return ctr || ctl || cbr || cbl;
 	}
 	
 	public boolean contains(Hitbox other) {
@@ -62,9 +64,7 @@ public class Hitbox {
 		cr = sides.right >= os.right;
 		cb = sides.bottom >= os.bottom;
 		cl = sides.left <= os.left;
-		if (ct && cr && cb && cl)
-			return true;
-		return false;
+		return ct && cr && cb && cl;
 	}
 	
 	public class Sides {

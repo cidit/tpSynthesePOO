@@ -20,7 +20,6 @@ public final class Game {
 
 	private static final int HALF = 2, EIGHT = 10;
 	private Hitbox surface;
-	private boolean over;
 	private int score;
 
 	List<Entity> entities;
@@ -29,7 +28,6 @@ public final class Game {
 
 	public Game(Dimension dimention, Dimension invasionStrategy) {
 		surface = new Hitbox(new Coordinate(0, 0), dimention);
-		over = false;
 		score = 0;
 
 		final int x, y;
@@ -38,6 +36,7 @@ public final class Game {
 
 		player = new Canon(new Coordinate(x, y));
 		invasion = new Formation(invasionStrategy);
+		System.out.println(player.getStatus());
 
 		entities = new ArrayList<Entity>();
 		entities.add(player);
@@ -48,11 +47,9 @@ public final class Game {
 		updateEntities();
 		moveEntities();
 		boundaryManagement();
-//		fireablesFire();
+		invasionFire();
 		updateScore();
-//		destroyEntities(); 
-		removeDestroyedEntities(); 
-		verifyPlayerStatus();
+		destroyEntities();
 		return entities;
 	}
 
@@ -75,24 +72,26 @@ public final class Game {
 			entity.reactToBorder(surface);
 	}
 
-	private void fireablesFire() {
+	private void invasionFire() {
+		List<Missile> newMissiles = new ArrayList<Missile>();
 		for (Entity entity : entities)
-			if (entity instanceof Fireable) {
+			if (entity instanceof Invader) {
 				Missile missile = ((Fireable) entity).fire();
 				if (missile != null)
-					entities.add(missile);
+					newMissiles.add(missile);
 			}
+		entities.addAll(newMissiles);
 	}
 
 	private void updateScore() {
-		boolean c1, c2;
 		for (Entity a : entities) {
 			for (Entity b : entities) {
 				if (Entity.checkColision(a, b)) {
-					c1 = a instanceof Invader && b instanceof Missile && b.getAllegiance() == Allegiance.FRIENDLY;
-					c2 = b instanceof Invader && a instanceof Missile && a.getAllegiance() == Allegiance.FRIENDLY;
-					if (c1 || c2) {
+					boolean c1 = a instanceof Invader && b instanceof Missile
+							&& b.getAllegiance() == Allegiance.FRIENDLY;
+					if (c1) {
 						score++;
+						System.out.println(score + "s");
 					}
 				}
 			}
@@ -105,20 +104,28 @@ public final class Game {
 				if (Entity.checkColision(a, b) && a.getAllegiance() != b.getAllegiance()) {
 					a.getDestroyed();
 					b.getDestroyed();
+					System.out.println("colide");
+					break;
 				}
 			}
 		}
-	}
-
-	private void removeDestroyedEntities() {
+		System.out.println("removing destroyed");
 		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
 	}
 
-	private void verifyPlayerStatus() {
-		over = player.getStatus() == Status.DESTROYED;
+	private boolean isPlayerDead() {
+		return player.getStatus() == Status.DESTROYED;
+	}
+	
+	private boolean isInvasionDefeated() {
+		for (Entity entity : entities) {
+			if (entity instanceof Invader)
+				return false;
+		}
+		return true;
 	}
 
-	// ----- player movement
+	// ----- player actions
 
 	public void playerGoesRight() {
 		player.changeDirection(Direction.RIGHT);
@@ -132,10 +139,16 @@ public final class Game {
 		player.changeDirection(Direction.NONE);
 	}
 
+	public void playerShoots() {
+		Missile missile = player.fire();
+		if (missile != null)
+			entities.add(missile);
+	}
+
 	// ----- checkers
 
 	public boolean isOver() {
-		return over;
+		return isPlayerDead() || isInvasionDefeated();
 	}
 
 	public int getScore() {

@@ -13,12 +13,14 @@ public abstract class Entity implements Movable {
 	protected Status status;
 	protected Direction direction;
 	protected Hitbox hitbox;
+	private int speed; // TODO
 
-	public Entity(Hitbox hitbox, Allegiance allegiance) {
+	public Entity(Hitbox hitbox, Allegiance allegiance, int speed) {
 		this.hitbox = hitbox;
 		this.allegiance = allegiance;
 		status = Status.OPERATIONAL;
 		direction = Direction.NONE;
+		this.speed = speed;
 	}
 
 	public Hitbox getHitbox() {
@@ -47,8 +49,8 @@ public abstract class Entity implements Movable {
 
 	@Override
 	public void move() {
-		int x = hitbox.getCoordinate().getX() + direction.getXVariation();
-		int y = hitbox.getCoordinate().getY() + direction.getYVariation();
+		int x = hitbox.getCoordinate().getX() + direction.getXVariation() * speed;
+		int y = hitbox.getCoordinate().getY() + direction.getYVariation() * speed;
 		hitbox.moveTo(new Coordinate(x, y));
 	}
 

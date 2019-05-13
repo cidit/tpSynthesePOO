@@ -111,7 +111,7 @@ public final class Scoreboard {
 	 * @author cidit
 	 *
 	 */
-	private static class Score implements Comparable<Score> {
+	public static class Score implements Comparable<Score> {
 
 		private String name;
 		private int points;

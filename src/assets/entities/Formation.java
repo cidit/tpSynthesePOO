@@ -23,16 +23,20 @@ public final class Formation implements BorderReactable {
 		direction = Direction.RIGHT;
 		units = new ArrayList<Invader>(columns);
 		fill();
-		updateUnitDirections();
+		updateUnits();
 	}
 
-	private void fill() {
+	private Dimension fill() {
+		int formationWidth = 0, formationHeight = 0;
 		Dimension dimention = DimensionProfiles.INVADER.get();
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				units.add(new Invader(new Coordinate(c * dimention.getWidth(), r * dimention.getHeight())));
+				formationWidth += dimention.getWidth();
 			}
+			formationHeight += dimention.getHeight();
 		}
+		return new Dimension(formationWidth, formationHeight);
 	}
 
 	public List<Invader> getUnits() {
@@ -43,25 +47,24 @@ public final class Formation implements BorderReactable {
 	public void reactToBorder(Hitbox game) {
 		for (Invader invader : units) {
 			Hitbox hitbox = invader.getHitbox();
-			if (direction == Direction.DOWN) {
-				if (hitbox.getSides().getRight() >= game.getSides().getRight())
-					direction = Direction.LEFT;
-				if (hitbox.getSides().getLeft() <= game.getSides().getLeft())
-					direction = Direction.RIGHT;
-				updateUnitDirections();
-				break;
-			} else if (hitbox.getSides().getRight() >= game.getSides().getRight()
-					|| hitbox.getSides().getLeft() <= game.getSides().getLeft()) {
-				direction = Direction.DOWN;
-				updateUnitDirections();
-				break;
-			}
+			if (hitbox.getSides().getRight() >= game.getSides().getRight())
+				direction = Direction.LEFT;
+			else if (hitbox.getSides().getLeft() <= game.getSides().getLeft())
+				direction = Direction.RIGHT;
+			else
+				continue;
+			System.out.println("meep");
+			updateUnits();
+			break;
 		}
 	}
 
-	private void updateUnitDirections() {
+	private void updateUnits() {
 		for (Invader invader : units) {
 			invader.changeDirection(direction);
+			int x = invader.hitbox.getCoordinate().getX();
+			int y = invader.hitbox.getCoordinate().getY() + invader.hitbox.getDimention().getHeight();
+			invader.teleport(new Coordinate(x, y));
 		}
 	}
 }

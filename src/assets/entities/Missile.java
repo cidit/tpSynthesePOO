@@ -5,11 +5,12 @@ import assets.entities.enumerations.Status;
 import assets.util.Coordinate;
 import assets.util.Hitbox;
 import engine.DimensionProfiles;
+import engine.Settings;
 
 public final class Missile extends Entity {
 
 	public Missile(Coordinate coordinate, Allegiance allegiance) {
-		super(new Hitbox(coordinate, DimensionProfiles.MISSILE.get()), allegiance);
+		super(new Hitbox(coordinate, DimensionProfiles.MISSILE.get()), allegiance, Settings.SPEED_MISSILE);
 	}
 
 	@Override
