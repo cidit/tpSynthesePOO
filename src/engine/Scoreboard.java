@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Class that instantiates a score board by reading a save file. Allows certain
- * modifications to the scoreboard. Closing function saves the new scoreboard
+ * modifications to the scoreboard. Closing function saves the new scoreboard.
  * into the file
  * 
  * may need to revise the code and use BufferedReader and BufferedWriter
@@ -20,14 +20,13 @@ import java.util.List;
  */
 public final class Scoreboard {
 
+	private final String path = Settings.SCOREBOARD_SAVEFILE;
 	private List<Score> scores;
-	private final String savePath;
 
 	public Scoreboard() {
 		scores = new ArrayList<Score>();
-		this.savePath = "src/engine/scores.dat";
 
-		try (FileReader reader = new FileReader(savePath)) {
+		try (FileReader reader = new FileReader(path)) {
 			fillScoresArray(reader);
 		} catch (FileNotFoundException e) {
 			System.out.println("SCOREBOARD SAVEFILE NOT FOUND");
@@ -89,7 +88,7 @@ public final class Scoreboard {
 	}
 
 	public void saveScoreboard() {
-		try (FileWriter writer = new FileWriter(savePath)) {
+		try (FileWriter writer = new FileWriter(path)) {
 			writer.write(toString());
 		} catch (IOException e) {
 			e.printStackTrace();

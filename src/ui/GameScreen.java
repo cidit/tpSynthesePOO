@@ -1,21 +1,19 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import assets.entities.Canon;
 import assets.entities.Entity;
@@ -23,10 +21,9 @@ import assets.entities.Invader;
 import assets.entities.Missile;
 import assets.util.Coordinate;
 import engine.Game;
-import engine.Scoreboard;
 import engine.Settings;
 
-public class Canvas extends JPanel {
+public class GameScreen extends JPanel {
 
 	/**
 	 * 
@@ -37,15 +34,13 @@ public class Canvas extends JPanel {
 	private Game game;
 	private List<Sprite> sprites;
 	private JLabel score;
-	private ScoreboardPanel scoreboardpanel;
 
-	public Canvas(Game game) {
+	private ActionListener actionListener;
+
+	public GameScreen(Game game) {
 		this.game = game;
 		setBackground(Color.BLACK);
-		setPreferredSize(Settings.APP_SIZE);
-
-		scoreboardpanel = new ScoreboardPanel();
-		add(scoreboardpanel);
+		setSize(Settings.APP_SIZE);
 
 		timer = new Timer();
 		sprites = new ArrayList<Sprite>();
@@ -90,8 +85,20 @@ public class Canvas extends JPanel {
 	}
 
 	private void triggerEndGameScreen() {
-		scoreboardpanel.setVisible(true);
+		actionListener.actionPerformed(new ActionEvent(this, 0, "score screen"));
 	}
+	
+    // ActionEvent source
+    public void addActionListener(ActionListener listener) {
+        if (actionListener != null) {
+        	System.out.println("GameScreen can only have *1* ActionListener");
+        	return;
+        } else 
+        	actionListener = listener;
+    }
+    public void removeActionListener(ActionListener listener) {
+        actionListener = null;
+    }
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -110,23 +117,25 @@ public class Canvas extends JPanel {
 		Toolkit.getDefaultToolkit().sync();
 	}
 
-	private class ScoreboardPanel extends JPanel {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -4705650242320865123L;
-		private Scoreboard scoreboard;
-		private JButton b_submit;
+	public final class Sprite {
 
-		public ScoreboardPanel() {
-			setPreferredSize(new Dimension(Settings.APP_SIZE));
-			setBackground(new Color(0, 0, 0, 100));
-			setLayout(new BorderLayout());
-			setVisible(false);
-			b_submit = new JButton("submit score");
-			b_submit.setVisible(true);
-			add(b_submit, BorderLayout.SOUTH);
+		private BufferedImage img;
+		private Entity e;
+		
+		public Sprite(Entity e, BufferedImage img) {
+			// TODO Auto-generated constructor stub
+			this.img = img;
+			this.e = e;
+		}
+		
+		public BufferedImage getImage() {
+			return img;
+		}
+		
+		public Entity getEntity() {
+			return e;
 		}
 	}
+
 
 }

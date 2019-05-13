@@ -53,7 +53,6 @@ public final class Formation implements BorderReactable {
 				direction = Direction.RIGHT;
 			else
 				continue;
-			System.out.println("meep");
 			updateUnits();
 			break;
 		}
