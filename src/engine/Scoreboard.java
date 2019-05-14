@@ -1,9 +1,11 @@
 package engine;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +22,16 @@ import java.util.List;
  */
 public final class Scoreboard {
 
-	private final String path = Settings.SCOREBOARD_SAVEFILE;
-	private List<Score> scores;
+	private final Path path = Settings.SCOREBOARD_SAVEFILE_PATH;
+	private List<Integer> scores;
 
 	public Scoreboard() {
-		scores = new ArrayList<Score>();
-
-		try (FileReader reader = new FileReader(path)) {
-			fillScoresArray(reader);
+		scores = new ArrayList<Integer>();
+		try {
+			List<String> lines = Files.readAllLines(path);
+			for (String string : lines) {
+				scores.add(Integer.parseInt(string));
+			}
 		} catch (FileNotFoundException e) {
 			System.out.println("SCOREBOARD SAVEFILE NOT FOUND");
 		} catch (IOException e1) {
@@ -35,52 +39,43 @@ public final class Scoreboard {
 		}
 	}
 
-	private void fillScoresArray(FileReader reader) {
-		String builder = "";
-		try {
-			int ch = reader.read();
-			while (ch != -1) {
-				builder += (char) ch;
-				ch = reader.read();
+	/**
+	 * 
+	 * @param score of the player
+	 * @return index of the score in the array
+	 */
+	public int addScore(int score) {
+		for (int i = 0; i < scores.size(); i++) {
+			if (score > scores.get(i)) {
+				scores.add(i, score);
+				return i;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
 		}
-
-		int start = 0, end = builder.indexOf(';');
-		while (end != -1) {
-			int delimiter = builder.indexOf(':', start);
-			String name = builder.substring(start, delimiter);
-			int points = Integer.parseInt(builder.substring(delimiter + 1, end));
-			start = end + 1;
-			end = builder.indexOf(';', start);
-			scores.add(new Score(name, points));
-		}
-
+		scores.add(score);
+		return scores.size() - 1;
 	}
 
-	public void addScore(String name, int points) {
-		boolean added = false;
-		for (Score score : scores) {
-			if (score.getName() == name)
-				if (score.getPoints() < points) {
-					score.setPoints(points);
-					added = true;
-				}
+	/**
+	 * 
+	 * @param playerScoreIndex
+	 * @return a sublist of the scoreboard with either the player's score at the end
+	 *         (if outside the top 5) or at the correct index (depending on the
+	 *         rank)
+	 */
+	public List<Integer> getSubScoreboard(int playerScoreIndex) {
+		int howManyTopScores;
+		List<Integer> sub;
+		if (scores.size() >= 6) {
+			howManyTopScores = playerScoreIndex < 6 ? 6 : 5;
+			sub = scores.subList(0, howManyTopScores);
+			if (playerScoreIndex > 5)
+				sub.add(scores.get(playerScoreIndex));
+		} else {
+			howManyTopScores = scores.size() - 1;
+			sub = scores.subList(0, howManyTopScores);
+			sub.add(scores.get(playerScoreIndex));
 		}
-		if (!added) {
-			scores.add(new Score(name, points));
-		}
-		scores.sort(null);
-	}
-
-	public Score getHighScore() {
-		return scores.get(0);
-	}
-
-	public List<Score> getScoreboard() {
-		return scores;
+		return sub;
 	}
 
 	public void resetScoreboard() {
@@ -88,57 +83,13 @@ public final class Scoreboard {
 	}
 
 	public void saveScoreboard() {
-		try (FileWriter writer = new FileWriter(path)) {
-			writer.write(toString());
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
+			for (Integer score : scores) {
+				writer.write(score);
+				writer.newLine();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public String toString() {
-		String s = "";
-		for (Score score : scores) {
-			s += score.toString();
-		}
-		return s;
-	}
-
-	/**
-	 * class defining a score
-	 * 
-	 * @author cidit
-	 *
-	 */
-	public static class Score implements Comparable<Score> {
-
-		private String name;
-		private int points;
-
-		public Score(String name, int points) {
-			this.name = name;
-			this.points = points;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public int getPoints() {
-			return points;
-		}
-
-		public void setPoints(int points) {
-			this.points = points;
-		}
-
-		public String toString() {
-			return name + ":" + points + ";";
-		}
-
-		@Override
-		public int compareTo(Score o) {
-			return o.points - this.points;
 		}
 	}
 }

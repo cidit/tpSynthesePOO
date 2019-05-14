@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 import javax.imageio.ImageIO;
 
@@ -19,7 +21,8 @@ public class Settings {
 	public static final assets.util.Dimension GAME_SIZE = new assets.util.Dimension(APP_SIZE.width, APP_SIZE.height);
 	public static final assets.util.Dimension INVASION_STRATEGY = new assets.util.Dimension(_INVASION_COLUMNS_, _INVASION_ROWS_);
 	public static final int FRAMERATE_MILLIS = (int) 1000 / _FPS_;
-	public static final String SCOREBOARD_SAVEFILE = "src/engine/scores.dat";
+	public static final Path SCOREBOARD_SAVEFILE_PATH = FileSystems.getDefault().getPath("src/engine/", "scores.dat");
+	//"src/engine/scores.dat"
 	
 	public static final int SPEED_CANON = 3;
 	public static final int SPEED_INVADER = 1;
