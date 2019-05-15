@@ -17,12 +17,15 @@ public final class ScreenManager extends JPanel implements ActionListener {
 	private static final String GAME_SCREEN = "game screen";
 	private static final String SCORE_SCREEN = "score screen";
 	
+	GameScreen gameScreen;
+	ScoreScreen scoreScreen;
+	
 	public ScreenManager(Game game) {
 		super();
 		setLayout(new CardLayout());
 		
-		GameScreen gameScreen = new GameScreen(game);
-		ScoreScreen scoreScreen = new ScoreScreen(game);
+		gameScreen = new GameScreen(game);
+		scoreScreen = new ScoreScreen(game);
 		
 		add(GAME_SCREEN, gameScreen);
 		add(SCORE_SCREEN, scoreScreen);
@@ -35,8 +38,9 @@ public final class ScreenManager extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		scoreScreen.makeScoreboard();
 		CardLayout cl = (CardLayout) getLayout();
-		cl.show(this, e.getActionCommand());
+		cl.show(this, SCORE_SCREEN);
 	}
 	
 }

@@ -22,8 +22,10 @@ import java.util.List;
  */
 public final class Scoreboard {
 
+	public static final int TOP_SCORES = 6;
 	private final Path path = Settings.SCOREBOARD_SAVEFILE_PATH;
 	private List<Integer> scores;
+	
 
 	public Scoreboard() {
 		scores = new ArrayList<Integer>();
@@ -31,6 +33,7 @@ public final class Scoreboard {
 			List<String> lines = Files.readAllLines(path);
 			for (String string : lines) {
 				scores.add(Integer.parseInt(string));
+				System.out.println(string);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("SCOREBOARD SAVEFILE NOT FOUND");
@@ -65,8 +68,8 @@ public final class Scoreboard {
 	public List<Integer> getSubScoreboard(int playerScoreIndex) {
 		int howManyTopScores;
 		List<Integer> sub;
-		if (scores.size() >= 6) {
-			howManyTopScores = playerScoreIndex < 6 ? 6 : 5;
+		if (scores.size() >= TOP_SCORES) {
+			howManyTopScores = playerScoreIndex < TOP_SCORES ? 6 : 5;
 			sub = scores.subList(0, howManyTopScores);
 			if (playerScoreIndex > 5)
 				sub.add(scores.get(playerScoreIndex));
@@ -85,7 +88,7 @@ public final class Scoreboard {
 	public void saveScoreboard() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
 			for (Integer score : scores) {
-				writer.write(score);
+				writer.write(score.toString());
 				writer.newLine();
 			}
 		} catch (IOException e) {
