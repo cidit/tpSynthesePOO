@@ -35,7 +35,13 @@ public class ScoreScreen extends JPanel {
 
 		this.game = game;
 
-		JLabel label = new JLabel("SCOREBOARD");
+		String jltext = !game.isPlayerDead()? "You Lost! :(": "You Won! :D";
+		JLabel wonOrLost = new JLabel(jltext);
+		wonOrLost.setForeground(Color.YELLOW);
+		wonOrLost.setBounds(Settings.APP_SIZE.width / 3, Settings.APP_SIZE.height / 16, Settings.APP_SIZE.width / 3, Settings.APP_SIZE.height / 4);
+		add(wonOrLost);
+		
+		JLabel label = new JLabel("rank | score");
 		listModel = new DefaultListModel<String>();
 		JList<String> list = new JList<String>(listModel);
 		panel = new JPanel(new BorderLayout());

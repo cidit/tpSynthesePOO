@@ -113,7 +113,7 @@ public final class Game {
 		entities.removeIf(value -> value.getStatus() == Status.DESTROYED);
 	}
 
-	private boolean isPlayerDead() {
+	public boolean isPlayerDead() {
 		return player.getStatus() == Status.DESTROYED;
 	}
 	
